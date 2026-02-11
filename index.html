@@ -4,183 +4,226 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Presentasi Tesis - Benyamin Batau</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{
     background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     color:white;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-section{
-    min-height:100vh;
+.container{
+    display:flex;
+    height:100vh;
+}
+
+.sidebar{
+    width:260px;
+    background:rgba(0,0,0,0.6);
+    padding:30px;
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:60px 10%;
-    text-align:center;
+    justify-content:space-between;
 }
 
-h1{
-    font-size:3rem;
+.sidebar h3{
     margin-bottom:20px;
-}
-
-h2{
-    font-size:2rem;
-    margin-bottom:30px;
     color:#00e5ff;
 }
 
-p{
-    font-size:1.1rem;
-    line-height:1.6;
-    max-width:900px;
-}
-
-.card{
-    background:rgba(255,255,255,0.08);
-    padding:30px;
-    border-radius:15px;
-    backdrop-filter:blur(10px);
-    margin:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
-
-.grid{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.stat{
-    font-size:2.5rem;
-    font-weight:700;
-    color:#00ffcc;
-}
-
-.button-demo{
-    margin-top:30px;
-    padding:15px 30px;
+.demo-btn{
+    padding:15px;
     background:#00e5ff;
-    color:#000;
+    color:black;
+    text-align:center;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.demo-btn:hover{
+    background:#00ffcc;
+}
+
+.slide-container{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:60px;
+    position:relative;
+}
+
+.slide{
+    display:none;
+    max-width:900px;
+    text-align:center;
+}
+
+.slide.active{
+    display:block;
+    animation:fade 0.5s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+h1{font-size:2.5rem;margin-bottom:20px;}
+h2{color:#00e5ff;margin-bottom:20px;}
+p, li{font-size:1.1rem;line-height:1.6;}
+ul{list-style:none;margin-top:15px;}
+li{margin-bottom:10px;}
+
+.nav{
+    position:absolute;
+    bottom:40px;
+    display:flex;
+    gap:20px;
+}
+
+.nav button{
+    padding:12px 25px;
     border:none;
-    border-radius:50px;
+    border-radius:30px;
     font-weight:600;
     cursor:pointer;
+    background:#00e5ff;
+    color:black;
     transition:0.3s;
-    text-decoration:none;
 }
 
-.button-demo:hover{
+.nav button:hover{
     background:#00ffcc;
-    transform:scale(1.05);
-}
-
-footer{
-    background:#000;
-    padding:20px;
-    text-align:center;
-    font-size:0.9rem;
 }
 </style>
 </head>
-
 <body>
 
-<section>
+<div class="container">
+
+<div class="sidebar">
+    <div>
+        <h3>Presentasi Tesis</h3>
+        <p><b>Benyamin Batau</b><br>NIM: 240020301078</p>
+    </div>
+
+    <a class="demo-btn" href="https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/" target="_blank">
+        🔬 Buka Aplikasi Demo
+    </a>
+</div>
+
+<div class="slide-container">
+
+<!-- SLIDE 1 -->
+<div class="slide active">
     <h1>Implementasi Color Grab & ChatGPT</h1>
     <h2>Diagnosis Insulator Busi Berbasis AI</h2>
     <p>
-        BENYAMIN BATAU<br>
-        NIM: 240020301078<br>
         Program Studi Pendidikan Teknologi Kejuruan<br>
         Universitas Negeri Makassar
     </p>
+</div>
 
-    <a class="button-demo" href="https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/" target="_blank">
-        🔬 BUKA APLIKASI DEMO
-    </a>
-</section>
-
-<section>
+<!-- SLIDE 2 -->
+<div class="slide">
     <h2>Latar Belakang</h2>
-    <div class="card">
-        <p>
-            Siswa mengalami kesulitan dalam diagnosis kondisi mesin akibat subjektivitas analisis warna busi.
-            Media pembelajaran interaktif masih terbatas di SMK.
-        </p>
-    </div>
-</section>
+    <ul>
+        <li>Siswa kesulitan memahami diagnosis kondisi mesin akibat subjektivitas analisis warna busi.</li>
+        <li>Terbatasnya media pembelajaran interaktif di SMK.</li>
+    </ul>
+</div>
 
-<section>
+<!-- SLIDE 3 -->
+<div class="slide">
+    <h2>Rumusan Masalah</h2>
+    <ul>
+        <li>Pemanfaatan Color Grab & ChatGPT dalam menginterpretasi warna insulator busi.</li>
+        <li>Peningkatan keterampilan siswa pada pembelajaran pemeliharaan mesin.</li>
+        <li>Perbedaan hasil belajar kelas eksperimen dan kontrol.</li>
+    </ul>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide">
     <h2>Metodologi Penelitian</h2>
-    <div class="grid">
-        <div class="card">
-            <p><b>Desain:</b><br>Quasi Experimental</p>
-        </div>
-        <div class="card">
-            <p><b>Subjek:</b><br>44 Siswa</p>
-        </div>
-        <div class="card">
-            <p><b>Instrumen:</b><br>Valid & Reliabel</p>
-        </div>
-    </div>
-</section>
+    <ul>
+        <li>Desain: Quasi Experimental - Nonequivalent Control Group Design</li>
+        <li>Subjek: 44 siswa (22 eksperimen, 22 kontrol)</li>
+    </ul>
+</div>
 
-<section>
-    <h2>Hasil Uji Hipotesis</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="stat">-2.846</div>
-            <p>t-hitung</p>
-        </div>
-        <div class="card">
-            <div class="stat">0.007</div>
-            <p>Sig. (2-tailed)</p>
-        </div>
-    </div>
-    <p>H₀ ditolak, H₁ diterima — terdapat perbedaan signifikan.</p>
-</section>
+<!-- SLIDE 5 -->
+<div class="slide">
+    <h2>Pengujian Instrumen</h2>
+    <ul>
+        <li>Validitas: Pearson Product Moment (r = 0,403 - 0,778)</li>
+        <li>Reliabilitas: Cronbach's Alpha = 0,914</li>
+        <li>Tingkat kesukaran: mudah, sedang, sukar</li>
+    </ul>
+</div>
 
-<section>
-    <h2>Efektivitas Pembelajaran (N-Gain)</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="stat">0.74</div>
-            <p>Kategori Tinggi<br>Kelas Eksperimen</p>
-        </div>
-        <div class="card">
-            <div class="stat">0.61</div>
-            <p>Kategori Sedang<br>Kelas Kontrol</p>
-        </div>
-    </div>
-</section>
+<!-- SLIDE 6 -->
+<div class="slide">
+    <h2>Uji Hipotesis</h2>
+    <p>t-hitung = -2,846</p>
+    <p>Sig. (2-tailed) = 0,007 &lt; 0,05</p>
+    <p><b>H₀ ditolak, H₁ diterima</b></p>
+</div>
 
-<section>
+<!-- SLIDE 7 -->
+<div class="slide">
+    <h2>Hasil N-Gain</h2>
+    <p>Kelas Eksperimen: <b>0,74 (Tinggi)</b></p>
+    <p>Kelas Kontrol: <b>0,61 (Sedang)</b></p>
+</div>
+
+<!-- SLIDE 8 -->
+<div class="slide">
     <h2>Kesimpulan</h2>
-    <div class="card">
-        <p>
-            Integrasi Color Grab dan ChatGPT efektif meningkatkan akurasi diagnosis mesin,
-            meningkatkan hasil belajar secara signifikan,
-            serta mendukung pembelajaran vokasi berbasis AI.
-        </p>
-    </div>
-</section>
+    <ul>
+        <li>Color Grab memberikan data RGB objektif.</li>
+        <li>ChatGPT menginterpretasi secara kontekstual.</li>
+        <li>Terdapat peningkatan signifikan hasil belajar siswa.</li>
+    </ul>
+</div>
 
-<footer>
-    © 2026 Benyamin Batau | AI-Based Vocational Learning Innovation
-</footer>
+<div class="nav">
+    <button onclick="prevSlide()">◀ Sebelumnya</button>
+    <button onclick="nextSlide()">Berikutnya ▶</button>
+</div>
+
+</div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index){
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[index].classList.add("active");
+}
+
+function nextSlide(){
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide(){
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+document.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight") nextSlide();
+    if(e.key === "ArrowLeft") prevSlide();
+});
+</script>
 
 </body>
 </html>
