@@ -14,14 +14,16 @@
     .slide-container { flex:1; padding:40px 60px; display:flex; align-items:center; justify-content:center; }
     .slide { width:100%; max-width:1350px; display:none; }
     .slide.active { display:block; }
-    h2 { font-size:2.4rem; color:#64b5f6; margin-bottom:1.2rem; text-align:center; }
+    h2 { font-size:2.4rem; color:#64b5f6; margin-bottom:1rem; text-align:center; }
+    h3 { font-size:1.8rem; color:#90caf9; margin:1.5rem 0 0.8rem; text-align:center; }
     p, li { font-size:1.25rem; line-height:1.7; margin-bottom:1rem; }
     .highlight { background:rgba(33,150,243,0.15); padding:18px; border-radius:10px; border-left:5px solid #2196f3; margin:20px 0; }
-    .chart-container { height:420px; background:rgba(13,27,42,0.6); padding:15px; border-radius:10px; margin:25px 0; }
+    .chart-container { height:380px; background:rgba(13,27,42,0.6); padding:15px; border-radius:10px; margin:20px 0; }
+    .chart-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:25px; margin:30px 0; }
     .nav { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:30px; z-index:100; }
     .nav button { padding:12px 28px; font-size:1.1rem; background:linear-gradient(90deg,#2196f3,#64b5f6); color:white; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
     .nav button:hover { opacity:0.9; transform:scale(1.05); }
-    @media (max-width:1100px) { .container { flex-direction:column; } .sidebar { width:100%; } .slide-container { padding:30px 25px; } }
+    @media (max-width:1100px) { .container { flex-direction:column; } .sidebar { width:100%; } .slide-container { padding:30px 25px; } .chart-row { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -39,7 +41,7 @@
     </div>
 
     <div class="slide-container">
-        <!-- Slide 1: Pentingnya Penelitian Ini -->
+        <!-- 1. Pentingnya Penelitian Ini -->
         <div class="slide active">
             <h2>Pentingnya Penelitian Ini</h2>
             <div class="highlight">
@@ -50,7 +52,7 @@
             </div>
         </div>
 
-        <!-- Slide 2: Rumusan Masalah -->
+        <!-- 2. Rumusan Masalah -->
         <div class="slide">
             <h2>Rumusan Masalah</h2>
             <div class="highlight">
@@ -62,7 +64,7 @@
             </div>
         </div>
 
-        <!-- Slide 3: Uji Validitas & Reliabilitas -->
+        <!-- 3. Uji Validitas & Reliabilitas -->
         <div class="slide">
             <h2>Uji Validitas & Reliabilitas Instrumen</h2>
             <div class="highlight">
@@ -73,7 +75,7 @@
             </div>
         </div>
 
-        <!-- Slide 4: Perbandingan Kategori Hasil Observasi -->
+        <!-- 4. Perbandingan Kategori Hasil Observasi -->
         <div class="slide">
             <h2>Perbandingan Kategori Hasil Observasi Kemampuan Siswa</h2>
             <div class="chart-container">
@@ -82,50 +84,66 @@
             <div style="display:flex; justify-content:space-around; margin-top:20px; font-size:1.1rem;">
                 <div style="text-align:center;">
                     <p style="color:#4caf50; font-weight:700;">Eksperimen (n=22)</p>
-                    <p>Sangat Baik (21–25): 27,27% (6 siswa)</p>
-                    <p>Baik (18–20): 36,36% (8 siswa)</p>
-                    <p>Cukup (15–17): 31,82% (7 siswa)</p>
-                    <p>Kurang (11–14): 4,55% (1 siswa)</p>
+                    <p>Sangat Baik: 27,27% (6 siswa)</p>
+                    <p>Baik: 36,36% (8 siswa)</p>
+                    <p>Cukup: 31,82% (7 siswa)</p>
+                    <p>Kurang: 4,55% (1 siswa)</p>
                 </div>
                 <div style="text-align:center;">
                     <p style="color:#2196f3; font-weight:700;">Kontrol (n=22)</p>
-                    <p>Sangat Baik (21–23): 31,82% (7 siswa)</p>
-                    <p>Baik (18–20): 27,27% (6 siswa)</p>
-                    <p>Cukup (15–17): 9,09% (2 siswa)</p>
-                    <p>Kurang (11–14): 31,82% (7 siswa)</p>
+                    <p>Sangat Baik: 31,82% (7 siswa)</p>
+                    <p>Baik: 27,27% (6 siswa)</p>
+                    <p>Cukup: 9,09% (2 siswa)</p>
+                    <p>Kurang: 31,82% (7 siswa)</p>
                 </div>
             </div>
-            <p style="text-align:center; margin-top:15px; color:#64b5f6;">Eksperimen lebih dominan kategori Baik & Cukup, lebih sedikit Kurang → penerapan metode tingkatkan konsistensi kemampuan siswa.</p>
+            <p style="text-align:center; margin-top:15px; color:#64b5f6;">Eksperimen lebih dominan di kategori Baik & Cukup, lebih sedikit Kurang → metode meningkatkan konsistensi kemampuan siswa.</p>
         </div>
 
-        <!-- Slide 5: Hasil Pretest, Posttest & N-Gain (berpasangan) -->
+        <!-- 5. Hasil Pretest, Posttest & N-Gain (3 visualisasi terpisah) -->
         <div class="slide">
             <h2>Hasil Pretest, Posttest & N-Gain (4.3)</h2>
-            <div class="chart-container">
-                <canvas id="gainPairedChart"></canvas>
+            <div class="chart-row">
+                <!-- Pretest tersendiri -->
+                <div>
+                    <h3>Pretest Rata-rata</h3>
+                    <div class="chart-container">
+                        <canvas id="pretestChart"></canvas>
+                    </div>
+                </div>
+                <!-- Posttest tersendiri -->
+                <div>
+                    <h3>Posttest Rata-rata</h3>
+                    <div class="chart-container">
+                        <canvas id="posttestChart"></canvas>
+                    </div>
+                </div>
+                <!-- N-Gain tersendiri -->
+                <div>
+                    <h3>N-Gain (Efektivitas Peningkatan)</h3>
+                    <div class="chart-container">
+                        <canvas id="ngainChart"></canvas>
+                    </div>
+                </div>
             </div>
-            <div style="display:flex; justify-content:space-around; margin-top:25px; font-size:1.2rem;">
+            <div style="display:flex; justify-content:space-around; margin-top:30px; font-size:1.2rem;">
                 <div style="text-align:center; background:rgba(76,175,80,0.15); padding:15px; border-radius:10px;">
-                    <p style="font-weight:700; color:#4caf50;">Kelas Eksperimen</p>
-                    <p>Pretest rata-rata: ~61</p>
-                    <p>Posttest rata-rata: <strong>80,25</strong></p>
-                    <p>N-Gain: <strong>0,70</strong> (Tinggi)</p>
-                    <p style="color:#4caf50; margin-top:10px;">Progres tajam & efektif</p>
+                    <p style="font-weight:700; color:#4caf50;">Eksperimen</p>
+                    <p>Pretest: ~61 | Posttest: 80,25</p>
+                    <p>N-Gain: 0,70 (Tinggi)</p>
                 </div>
                 <div style="text-align:center; background:rgba(33,150,243,0.15); padding:15px; border-radius:10px;">
-                    <p style="font-weight:700; color:#2196f3;">Kelas Kontrol</p>
-                    <p>Pretest rata-rata: ~59,5</p>
-                    <p>Posttest rata-rata: <strong>76,70</strong></p>
-                    <p>N-Gain: <strong>0,62</strong> (Sedang)</p>
-                    <p style="color:#2196f3; margin-top:10px;">Progres sedang</p>
+                    <p style="font-weight:700; color:#2196f3;">Kontrol</p>
+                    <p>Pretest: ~59,5 | Posttest: 76,70</p>
+                    <p>N-Gain: 0,62 (Sedang)</p>
                 </div>
             </div>
-            <p style="text-align:center; margin-top:20px; font-size:1.3rem; color:#64b5f6;">
-                Visualisasi berpasangan menunjukkan progres eksperimen lebih tinggi (kenaikan posttest lebih besar + N-Gain tinggi)
+            <p style="text-align:center; margin-top:25px; font-size:1.3rem; color:#64b5f6;">
+                Progres siswa: Pretest hampir sama → Posttest eksperimen jauh lebih tinggi → N-Gain menunjukkan metode Color Grab + ChatGPT lebih efektif.
             </p>
         </div>
 
-        <!-- Slide 6: Hasil Uji Prasyarat -->
+        <!-- 6. Hasil Uji Prasyarat -->
         <div class="slide">
             <h2>Hasil Uji Prasyarat Analisis</h2>
             <div class="chart-container">
@@ -140,7 +158,7 @@
             </div>
         </div>
 
-        <!-- Slide 7: Hasil Uji-t -->
+        <!-- 7. Hasil Uji-t -->
         <div class="slide">
             <h2>Hasil Uji Independent Sample t-Test</h2>
             <div class="highlight" style="text-align:center; font-size:1.4rem;">
@@ -154,7 +172,7 @@
             <p style="text-align:center; margin-top:15px;">Menjawab rumusan masalah ke-3: Metode berpengaruh signifikan.</p>
         </div>
 
-        <!-- Slide Akhir: Kesimpulan -->
+        <!-- Akhir: Kesimpulan -->
         <div class="slide">
             <h2>Kesimpulan</h2>
             <div class="highlight">
@@ -164,7 +182,7 @@
             </div>
             <h1 style="text-align:center; margin:80px 0 40px; font-size:3.5rem; color:#64b5f6;">TERIMA KASIH</h1>
             <p style="text-align:center; font-size:1.8rem;">Benyamin Batau – NIM 240020301078</p>
-            <p style="text-align:center; margin-top:20px;">S</p>
+            <p style="text-align:center; margin-top:20px;">Siap menjawab pertanyaan</p>
         </div>
     </div>
 </div>
@@ -183,7 +201,7 @@
     document.addEventListener('keydown', e=>{ if(e.key==='ArrowRight'||e.key===' ') next(); if(e.key==='ArrowLeft') prev(); });
 
     function initCharts() {
-        // Observasi kategori (sudah baik dari sebelumnya)
+        // Observasi (tetap)
         new Chart(document.getElementById('obsChart'), {
             type: 'bar',
             data: {
@@ -193,55 +211,50 @@
                     { label: 'Kontrol', data: [31.82, 27.27, 9.09, 31.82], backgroundColor: '#2196f3' }
                 ]
             },
-            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50, title:{display:true,text:'Persentase (%)'} }}}
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50 }}}
         });
 
-        // Chart berpasangan Pretest-Posttest-N-Gain (progres jelas)
-        new Chart(document.getElementById('gainPairedChart'), {
+        // Pretest tersendiri
+        new Chart(document.getElementById('pretestChart'), {
             type: 'bar',
             data: {
-                labels: ['Pretest Rata-rata', 'Posttest Rata-rata', 'N-Gain'],
-                datasets: [
-                    {
-                        label: 'Eksperimen',
-                        data: [61, 80.25, 0.70],
-                        backgroundColor: 'rgba(76,175,80,0.8)',
-                        borderColor: '#4caf50',
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Kontrol',
-                        data: [59.5, 76.70, 0.62],
-                        backgroundColor: 'rgba(33,150,243,0.8)',
-                        borderColor: '#2196f3',
-                        borderWidth: 2
-                    }
-                ]
+                labels: ['Eksperimen', 'Kontrol'],
+                datasets: [{ label: 'Pretest Rata-rata', data: [61, 59.5], backgroundColor: ['#4caf50', '#2196f3'] }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'Nilai / N-Gain' } }
-                },
-                plugins: {
-                    legend: { position: 'top', labels: { color: '#e3f2fd' } },
-                    title: { display: true, text: 'Progres Pretest → Posttest → N-Gain (Eksperimen vs Kontrol)', color: '#fff' }
-                }
-            }
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:100 }}, plugins:{ title:{display:true,text:'Pretest (Baseline)', color:'#fff'}}}
         });
 
-        // Uji Prasyarat & Uji-t (simbolis, tetap dari sebelumnya)
+        // Posttest tersendiri
+        new Chart(document.getElementById('posttestChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Eksperimen', 'Kontrol'],
+                datasets: [{ label: 'Posttest Rata-rata', data: [80.25, 76.70], backgroundColor: ['#4caf50', '#2196f3'] }]
+            },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:100 }}, plugins:{ title:{display:true,text:'Posttest (Hasil Akhir)', color:'#fff'}}}
+        });
+
+        // N-Gain tersendiri
+        new Chart(document.getElementById('ngainChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Eksperimen', 'Kontrol'],
+                datasets: [{ label: 'N-Gain', data: [0.70, 0.62], backgroundColor: ['#4caf50', '#2196f3'] }]
+            },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:1 }}, plugins:{ title:{display:true,text:'N-Gain (Efektivitas Peningkatan)', color:'#fff'}}}
+        });
+
+        // Uji Prasyarat & Uji-t (tetap)
         new Chart(document.getElementById('prasyaratChart'), {
             type: 'bar',
-            data: { labels: ['Normalitas', 'Homogenitas', 'Linearitas'], datasets: [{ data: [0.2, 0.543, 0.2], backgroundColor: '#64b5f6', label: 'Sig. Value' }] },
+            data: { labels: ['Normalitas', 'Homogenitas', 'Linearitas'], datasets: [{ data: [0.2, 0.543, 0.2], backgroundColor: '#64b5f6' }] },
             options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:0.6 }}, plugins:{ title:{display:true,text:'Semua Sig. > 0.05 ✓', color:'#fff'}}}
         });
 
         new Chart(document.getElementById('tChart'), {
             type: 'bar',
-            data: { labels: ['Independent t-Test'], datasets: [{ data: [2.846], backgroundColor: '#4caf50', label: 't-hitung (abs)' }] },
-            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true }}, plugins:{ title:{display:true,text:'Sig. = 0.007 < 0.05 → Signifikan', color:'#fff'}}}
+            data: { labels: ['Independent t-Test'], datasets: [{ data: [2.846], backgroundColor: '#4caf50' }] },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true }}, plugins:{ title:{display:true,text:'t = -2.846 | Sig. = 0.007 < 0.05 → Signifikan', color:'#fff'}}}
         });
     }
     window.onload = () => { show(0); initCharts(); };
