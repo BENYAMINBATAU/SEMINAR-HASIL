@@ -188,7 +188,155 @@
             </p>
         </div>
 
-        <!-- ... (paste semua slide lain dari kode sebelumnya di sini: Latar Belakang sampai Terima Kasih) ... -->
+        <!-- <!-- SLIDE 2 -->
+        <div class="slide">
+            <h2>Latar Belakang Penelitian</h2>
+            <p>Siswa kesulitan memahami diagnosis kondisi mesin akibat subjektivitas dalam analisis warna busi secara manual.</p>
+            <p>Terbatasnya media pembelajaran interaktif di SMK.</p>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <h2>Rumusan Masalah</h2>
+            <ul>
+                <li>Bagaimana pemanfaatan aplikasi Color Grab berbantuan ChatGPT dalam mengakurasi dan menginterpretasikan data warna insulator busi untuk mendukung peningkatan pemahaman siswa terhadap kondisi mesin?</li>
+                <li>Sejauh mana penerapan aplikasi Color Grab berbantuan ChatGPT dapat meningkatkan keterampilan siswa pada pembelajaran pemeliharaan mesin Kompetensi Keahlian TKR dan TSM (Teknik Otomotif)?</li>
+                <li>Apakah ada perbedaan hasil belajar antara kelas eksperimen yang menggunakan aplikasi Color Grab berbantuan ChatGPT dengan kelas kontrol yang melaksanakan pembelajaran konvensional?</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+            <h2>Metodologi Penelitian</h2>
+            <p>Desain Penelitian: <b>Quasi Experimental Design</b></p>
+            <p>Nonequivalent Control Group Design</p>
+            <p>Subjek Penelitian:</p>
+            <ul>
+                <li>Siswa kelas XI TKR dan TSM SMKN 1 Sumarorong</li>
+                <li>Total responden: 44 siswa (22 kelas eksperimen, 22 kelas kontrol)</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide">
+            <h2>Instrumen & Teknik Pengumpulan Data</h2>
+            <p>Observasi: Mengamati pelaksanaan pembelajaran sesuai sintaks yang dirancang.</p>
+            <p>Tes: Pretest dan posttest untuk mengukur hasil belajar siswa.</p>
+            <p>Pengujian Instrumen:</p>
+            <ul>
+                <li>Uji Validitas: Pearson Product Moment (24 butir soal valid, r-hitung 0,403-0,778)</li>
+                <li>Uji Reliabilitas: Cronbach's Alpha = 0,914 (kategori baik)</li>
+                <li>Uji Tingkat Kesukaran: Distribusi soal mudah, sedang, dan sukar</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide">
+            <h2>Uji Normalitas (Kolmogorov-Smirnov)</h2>
+            <div class="stats-flex">
+                <div>
+                    <p>Eksperimen Sig = 0,200</p>
+                    <p>Kontrol Sig = 0,200</p>
+                    <p><b>Data berdistribusi normal</b></p>
+                </div>
+                <div>
+                    <canvas id="normalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 -->
+        <div class="slide">
+            <h2>Uji Homogenitas (Levene)</h2>
+            <div class="stats-flex">
+                <div>
+                    <p>Sig = 0,543</p>
+                    <p><b>Varians homogen</b></p>
+                </div>
+                <div>
+                    <canvas id="homoChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide">
+            <h2>Uji Hipotesis (Independent Sample t-Test)</h2>
+            <p>H₀: Tidak ada perbedaan signifikan hasil belajar antara kelas eksperimen dan kelas kontrol.</p>
+            <p>H₁: Ada perbedaan signifikan hasil belajar antara kelas eksperimen dan kelas kontrol.</p>
+            <p>Kriteria Pengujian: Jika nilai Sig. (2-tailed) < 0,05, maka H₀ ditolak dan H₁ diterima.</p>
+            <p>t-hitung = -2,846</p>
+            <p>Sig. (2-tailed) = 0,007 < 0,05</p>
+            <p><b>Kesimpulan: H₀ ditolak, H₁ diterima.</b></p>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide">
+            <h2>Perbandingan Pretest & Posttest</h2>
+            <div class="stats-flex">
+                <div>
+                    <p>Eksperimen: 57,09 → 85,68</p>
+                    <p>Kontrol: 51,03 → 77,27</p>
+                </div>
+                <div>
+                    <canvas id="compareChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 -->
+        <div class="slide">
+            <h2>N-Gain</h2>
+            <div class="stats-flex">
+                <div>
+                    <p>Eksperimen = 0,74 (Tinggi)</p>
+                    <p>Kontrol = 0,61 (Sedang)</p>
+                </div>
+                <div>
+                    <canvas id="ngainChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide">
+            <h2>Hasil Penelitian</h2>
+            <p>Hasil Observasi Penerapan Aplikasi.</p>
+            <p>Distribusi Kategori Nilai:</p>
+            <p>Kelas Eksperimen: Didominasi kategori Baik (36,36%) dan Cukup (22,73%).</p>
+            <p>Kelas Kontrol: Didominasi kategori Sangat Baik (31,82%) tetapi juga kategori Kurang lebih tinggi (22,73%).</p>
+            <p>Kelas eksperimen menunjukkan distribusi yang lebih merata dengan keterlibatan siswa yang lebih konsisten.</p>
+        </div>
+
+        <!-- SLIDE 12 (Pembahasan) -->
+        <div class="slide">
+            <h2>Pembahasan</h2>
+            <p>Faktor Keberhasilan Pembelajaran dengan Color Grab & ChatGPT:</p>
+            <ul>
+                <li>Objektivitas Data: Color Grab memberikan data RGB terukur.</li>
+                <li>Analisis Kontekstual: ChatGPT menginterpretasi data warna secara teknis.</li>
+                <li>Pembelajaran Aktif: Siswa terlibat dalam observasi dan analisis.</li>
+                <li>Keterampilan Abad 21: Literasi digital dan berpikir kritis.</li>
+            </ul>
+            <p>Implikasi:</p>
+            <ul>
+                <li>Pembelajaran berbasis teknologi AI efektif meningkatkan hasil belajar siswa vokasi.</li>
+                <li>Integrasi aplikasi mobile dan AI mendukung diagnosis teknis lebih akurat.</li>
+                <li>Dapat diadaptasi untuk kompetensi teknik otomotif lainnya.</li>
+            </ul>
+        </div>
+
+        <!-- SLIDE 13 (Kesimpulan) -->
+        <div class="slide">
+            <h2>Kesimpulan</h2>
+            <p>Aplikasi Color Grab dan ChatGPT efektif meningkatkan akurasi diagnosis kondisi mesin melalui analisis warna insulator busi dengan data RGB yang terukur dan interpretasi AI yang kontekstual.</p>
+            <p>Penerapan teknologi ini meningkatkan hasil belajar siswa secara signifikan dengan rata-rata posttest kelas eksperimen (80,25) lebih tinggi dari kelas kontrol (75,38).</p>
+            <p>Terdapat perbedaan signifikan antara kelas eksperimen dan kontrol (t-hitung = -2,846, Sig. = 0,007 < 0,05) dengan N-Gain kelas eksperimen kategori Tinggi (0,74) vs kelas kontrol kategori Sedang (0,61).</p>
+            <p>Pembelajaran berbasis Color Grab dan ChatGPT terbukti efektif meningkatkan keterampilan diagnosis mesin siswa SMK.</p>
+        </div>
+
+            </p>
+        </div> -->
 
         <!-- Contoh: SLIDE TERAKHIR -->
         <div class="slide">
