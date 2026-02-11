@@ -258,9 +258,10 @@
     
     #notes-toggle { 
         position: fixed;
-        top: 30px;
-        right: 30px;
-        padding: 12px 24px;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        padding: 12px 20px;
         background: rgba(33, 150, 243, 0.2);
         backdrop-filter: blur(10px);
         border: 2px solid rgba(100, 181, 246, 0.3);
@@ -271,20 +272,23 @@
         font-weight: 600;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
     }
     #notes-toggle:hover {
         background: rgba(33, 150, 243, 0.4);
-        transform: scale(1.05);
+        transform: translateY(-50%) scale(1.05);
         box-shadow: 0 6px 20px rgba(33, 150, 243, 0.5);
     }
     
     .slide-counter {
         position: fixed;
-        top: 30px;
-        left: 30px;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
         background: rgba(13, 27, 42, 0.9);
         backdrop-filter: blur(10px);
-        padding: 12px 24px;
+        padding: 12px 20px;
         border-radius: 30px;
         border: 2px solid rgba(100, 181, 246, 0.3);
         color: #64b5f6;
@@ -292,6 +296,8 @@
         font-size: 1.1rem;
         z-index: 151;
         box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
     }
     
     @media (max-width: 1200px) {
@@ -313,7 +319,20 @@
         h2 { font-size: 1.8rem; }
         #speaker-notes { width: 90%; right: 5%; bottom: 140px; }
         .nav { bottom: 20px; padding: 12px 20px; }
-        .slide-counter, #notes-toggle { top: 15px; }
+        .slide-counter { 
+            top: 15px; 
+            left: 15px;
+            transform: none;
+            writing-mode: horizontal-tb;
+            text-orientation: mixed;
+        }
+        #notes-toggle { 
+            top: 15px; 
+            right: 15px;
+            transform: none;
+            writing-mode: horizontal-tb;
+            text-orientation: mixed;
+        }
     }
 </style>
 </head>
@@ -640,7 +659,7 @@
 
         <div class="nav">
             <button onclick="prevSlide()">◀ Prev</button>
-            <button id="playPause" onclick="toggleAutoSlide()">▶ Auto</button>
+            <button onclick="window.open('https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/', '_blank')" style="background: linear-gradient(90deg, #4caf50, #66bb6a);">🚀 Demo App</button>
             <button onclick="nextSlide()">Next ▶</button>
         </div>
 
@@ -652,8 +671,6 @@
     let currentSlide = 0;
     const slides = document.querySelectorAll(".slide");
     const totalSlides = slides.length;
-    let autoSlideInterval = null;
-    let isAutoPlaying = false;
 
     const notesContent = [
         "<strong>Slide 1 - Cover:</strong><br>Selamat pagi/siang Bapak/Ibu penguji dan hadirin. Perkenalkan saya Benyamin Batau. Hari ini saya akan mempresentasikan penelitian tesis saya tentang pemanfaatan aplikasi Color Grab berbantuan ChatGPT untuk meningkatkan keterampilan diagnosis mesin siswa SMK.",
@@ -706,18 +723,6 @@
     function prevSlide() { 
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; 
         showSlide(currentSlide); 
-    }
-
-    function toggleAutoSlide() {
-        if (isAutoPlaying) {
-            clearInterval(autoSlideInterval);
-            document.getElementById("playPause").innerHTML = "▶ Auto";
-            isAutoPlaying = false;
-        } else {
-            autoSlideInterval = setInterval(nextSlide, 12000);
-            document.getElementById("playPause").innerHTML = "⏸ Pause";
-            isAutoPlaying = true;
-        }
     }
 
     document.getElementById("notes-toggle").addEventListener("click", function() {
