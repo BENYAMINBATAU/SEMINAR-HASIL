@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="coinzilla" content="b6d42d0e29f0083c0385c97ee826f445" />
+  <title>BENYAMIN BATAU - Platform Edukasi Otomotif Digital v3.0</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+      background-size: cover;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+      animation: slideDown 0.8s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 30px;
+      animation: slideUp 0.8s ease-out 0.2s both;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 30px 20px;
+      background: #0f0f0f;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    
+    .nav-tab {
+      padding: 15px 30px;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-tab::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .nav-tab:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .nav-tab:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    
+    .nav-tab.active {
+      background: linear-gradient(135deg, #00d4ff, #0072ff);
+      color: white;
+      border-color: #00d4ff;
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+    }
+    
+    .nav-tab.tab-1.active {
+      background: linear-gradient(135deg, #00d4ff, #0072ff);
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+    }
+    
+    .nav-tab.tab-2.active {
+      background: linear-gradient(135deg, #c084fc, #7c3aed);
+      box-shadow: 0 8px 25px rgba(192, 132, 252, 0.4);
+    }
+    
+    .nav-tab.tab-3.active {
+      background: linear-gradient(135deg, #39ff14, #10b981);
+      box-shadow: 0 8px 25px rgba(57, 255, 20, 0.4);
+    }
+    
+    .nav-tab.tab-4.active {
+      background: linear-gradient(135deg, #ff4d4d, #dc2626);
+      box-shadow: 0 8px 25px rgba(255, 77, 77, 0.4);
+    }
+    
+    /* Content Container */
+    .content-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .kamar-content {
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .kamar-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .kamar {
+      margin: 32px auto;
+      padding: 0;
+      border-radius: 20px;
+      max-width: 1300px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      background: #1a1a2e;
+      border: 3px solid;
+    }
+    
+    .kamar-header {
+      padding: 25px 32px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .kamar-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    
+    .kamar-body {
+      padding: 32px;
+    }
+    
+    /* Kamar Styles */
+    .kamar-1 {
+      border-color: #00d4ff;
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+    }
+    
+    .kamar-1 .kamar-header {
+      background: linear-gradient(135deg, #00d4ff22, #0072ff22);
+    }
+    
+    .kamar-1 h2 { color: #00d4ff; }
+    
+    .kamar-2 {
+      border-color: #c084fc;
+      background: linear-gradient(135deg, #2c0b3f 0%, #1a0b2e 100%);
+    }
+    
+    .kamar-2 .kamar-header {
+      background: linear-gradient(135deg, #c084fc22, #7c3aed22);
+    }
+    
+    .kamar-2 h2 { color: #c084fc; }
+    
+    .kamar-3 {
+      border-color: #39ff14;
+      background: linear-gradient(135deg, #0d3b1f 0%, #071a0d 100%);
+    }
+    
+    .kamar-3 .kamar-header {
+      background: linear-gradient(135deg, #39ff1422, #10b98122);
+    }
+    
+    .kamar-3 h2 { color: #39ff14; }
+    
+    .kamar-4 {
+      border-color: #ff4d4d;
+      background: linear-gradient(135deg, #3d0f0f 0%, #1a0000 100%);
+    }
+    
+    .kamar-4 .kamar-header {
+      background: linear-gradient(135deg, #ff4d4d22, #dc262622);
+    }
+    
+    .kamar-4 h2 { color: #ff4d4d; }
+    
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .badge-primary {
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+      border: 1px solid #00d4ff;
+    }
+    
+    .badge-upgrade {
+      background: rgba(251, 191, 36, 0.2);
+      color: #fbbf24;
+      border: 1px solid #fbbf24;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+    }
+    
+    /* Footer */
+    footer {
+      background: #0a0a0a;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 2px solid #1e293b;
+      margin-top: 60px;
+    }
+    
+    footer p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .nav-tabs {
+        padding: 20px 10px;
+      }
+      
+      .nav-tab {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+      }
+      
+      .kamar-header h2 {
+        font-size: 1.4rem;
+      }
+    }
+    
+    /* Icon Styles */
+    .icon {
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>🏍️ BENYAMIN BATAU</h1>
+    <p>Platform Edukasi Otomotif Digital SMK Modern</p>
+    <span class="badge badge-primary">Coinzilla Ready • Crypto Ads Enabled</span>
+    <span class="badge badge-upgrade">⚡ v3.0 UPGRADED</span>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab tab-1 active" onclick="switchTab(1)">
+      📱 E-Absensi GPS Pro
+    </button>
+    <button class="nav-tab tab-2" onclick="switchTab(2)">
+      🔍 Scanner Busi AI Ultra
+    </button>
+    <button class="nav-tab tab-3" onclick="switchTab(3)">
+      🌐 Portal & Sosmed
+    </button>
+    <button class="nav-tab tab-4" onclick="switchTab(4)">
+      📝 Kuis Blockchain
+    </button>
+  </div>
+
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    
+    <!-- Kamar 1: E-Absensi UPGRADED -->
+    <div id="content-1" class="kamar-content active">
+      <div class="kamar kamar-1">
+        <div class="kamar-header">
+          <span class="icon">⏰</span>
+          <h2>E-Absensi Digital GPS Pro v3.0</h2>
+          <span class="badge badge-upgrade" style="margin-left: auto;">UPGRADED</span>
+        </div>
+        <div class="kamar-body">
+          <!-- E-Absensi UPGRADED akan dimuat di sini -->
+          <div style="text-align: center; padding: 20px 0;">
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+              ✨ <strong>Upgrade Highlights:</strong> Enhanced GPS Accuracy • Real-time Validation • Smart Notifications • Auto-retry System
+            </p>
+          </div>
+          <iframe id="iframe-absensi" src="about:blank" width="100%" height="850px" frameborder="0" style="border-radius: 15px; background: white;"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kamar 2: Scanner UPGRADED -->
+    <div id="content-2" class="kamar-content">
+      <div class="kamar kamar-2">
+        <div class="kamar-header">
+          <span class="icon">🔬</span>
+          <h2>Scanner Diagnosis Busi AI Ultra v3.0</h2>
+          <span class="badge badge-upgrade" style="margin-left: auto;">200+ DATABASE</span>
+        </div>
+        <div class="kamar-body">
+          <div style="text-align: center; padding: 20px 0;">
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+              ✨ <strong>Upgrade Highlights:</strong> 200+ Color Library • Advanced CIE2000 Algorithm • Multi-zone Sampling • 98% Accuracy
+            </p>
+          </div>
+          <iframe id="iframe-scanner" src="about:blank" width="100%" height="950px" frameborder="0" style="border-radius: 15px; background: #020617;"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kamar 3: Portal -->
+    <div id="content-3" class="kamar-content">
+      <div class="kamar kamar-3">
+        <div class="kamar-header">
+          <span class="icon">🌐</span>
+          <h2>Portal & Media Sosial</h2>
+        </div>
+        <div class="kamar-body">
+          <div style="text-align: center; padding: 30px;">
+            <h3 style="color: #39ff14; margin-bottom: 25px; font-size: 1.5rem;">
+              Platform Edukasi Otomotif Digital
+            </h3>
+            
+            <p style="line-height: 1.8; margin-bottom: 30px; color: #e0e0e0;">
+              Website pembelajaran Teknik Sepeda Motor (TSM) dengan fokus pada<br>
+              diagnosis sistem pengapian, kuis interaktif, dan teknologi blockchain.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 30px;">
+              <a href="https://web.facebook.com/benyamin.batau?locale=id_ID" target="_blank" 
+                 style="padding: 15px; background: linear-gradient(135deg, #1877f2, #0d5dbf); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s; display: block;">
+                📘 Facebook
+              </a>
+              <a href="https://www.youtube.com/@BENYAMINBATAU" target="_blank"
+                 style="padding: 15px; background: linear-gradient(135deg, #ff0000, #cc0000); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s; display: block;">
+                ▶️ YouTube
+              </a>
+              <a href="https://www.tiktok.com/@benyaminbatau" target="_blank"
+                 style="padding: 15px; background: linear-gradient(135deg, #000000, #fe2c55); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s; display: block;">
+                🎵 TikTok
+              </a>
+              <a href="https://x.com/BenyaminB11K" target="_blank"
+                 style="padding: 15px; background: linear-gradient(135deg, #1da1f2, #0c8bd9); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s; display: block;">
+                🐦 X (Twitter)
+              </a>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 25px; background: rgba(57, 255, 20, 0.1); border-radius: 15px; border: 2px solid #39ff14;">
+              <h4 style="color: #39ff14; margin-bottom: 15px;">💼 Kolaborasi & Promosi</h4>
+              <p style="color: #94a3b8;">
+                Platform terbuka untuk kerjasama brand edukatif dan kampanye<br>
+                iklan berbasis crypto melalui jaringan Coinzilla
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kamar 4: Kuis -->
+    <div id="content-4" class="kamar-content">
+      <div class="kamar kamar-4">
+        <div class="kamar-header">
+          <span class="icon">🎓</span>
+          <h2>Kuis Blockchain Rewards</h2>
+        </div>
+        <div class="kamar-body">
+          <iframe id="iframe-kuis" src="about:blank" width="100%" height="800px" frameborder="0" style="border-radius: 15px; background: #020617;"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <strong style="color: #94a3b8;">© 2026 BENYAMIN BATAU</strong><br>
+      Educational Web Platform • SMKN 1 Sumarorong<br>
+      Powered by Modern Web Technology & Blockchain Integration • v3.0 UPGRADED
+    </p>
+  </footer>
+
+  <script>
+    // Lazy loading iframes untuk performa optimal
+    function loadIframe(id, content) {
+      const iframe = document.getElementById(id);
+      iframe.srcdoc = content;
+    }
+
+    function switchTab(tabNumber) {
+      // Remove active from all tabs and contents
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      document.querySelectorAll('.kamar-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Add active to selected tab and content
+      document.querySelector(`.tab-${tabNumber}`).classList.add('active');
+      document.getElementById(`content-${tabNumber}`).classList.add('active');
+      
+      // Load iframe content only when tab is activated (lazy loading)
+      if (tabNumber === 1 && !document.getElementById('iframe-absensi').srcdoc) {
+        loadAbsensi();
+      } else if (tabNumber === 2 && !document.getElementById('iframe-scanner').srcdoc) {
+        loadScanner();
+      } else if (tabNumber === 4 && !document.getElementById('iframe-kuis').srcdoc) {
+        loadKuis();
+      }
+      
+      // Smooth scroll to content
+      window.scrollTo({
+        top: document.querySelector('.content-wrapper').offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }
+
+    // Load content functions akan didefinisikan di bawah
+    // (Konten akan dimuat dari file eksternal atau inline)
+  </script>
+</body>
+</html>
