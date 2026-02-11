@@ -1,229 +1,764 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Presentasi Tesis - Benyamin Batau</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+const pptxgen = require("pptxgenjs");
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-    overflow:hidden;
-}
+// Membuat presentasi baru
+let pres = new pptxgen();
+pres.layout = 'LAYOUT_16x9';
+pres.author = 'BENYAMIN BATAU';
+pres.title = 'Presentasi Tesis';
 
-.container{
-    display:flex;
-    height:100vh;
-}
+// Warna cerah yang konsisten
+const PRIMARY_COLOR = "0891B2";    // Teal cerah
+const SECONDARY_COLOR = "F0F9FF";  // Light blue background
+const ACCENT_COLOR = "0E7490";     // Darker teal
+const TEXT_COLOR = "1E293B";       // Dark text
+const WHITE = "FFFFFF";
 
-.sidebar{
-    width:260px;
-    background:rgba(0,0,0,0.6);
-    padding:30px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
+// ==================== SLIDE 1: HALAMAN JUDUL ====================
+let slide1 = pres.addSlide();
+slide1.background = { color: PRIMARY_COLOR };
 
-.sidebar h3{
-    margin-bottom:20px;
-    color:#00e5ff;
-}
-
-.demo-btn{
-    padding:15px;
-    background:#00e5ff;
-    color:black;
-    text-align:center;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.demo-btn:hover{
-    background:#00ffcc;
-}
-
-.slide-container{
-    flex:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:60px;
-    position:relative;
-}
-
-.slide{
-    display:none;
-    max-width:900px;
-    text-align:center;
-}
-
-.slide.active{
-    display:block;
-    animation:fade 0.5s ease;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-h1{font-size:2.5rem;margin-bottom:20px;}
-h2{color:#00e5ff;margin-bottom:20px;}
-p, li{font-size:1.1rem;line-height:1.6;}
-ul{list-style:none;margin-top:15px;}
-li{margin-bottom:10px;}
-
-.nav{
-    position:absolute;
-    bottom:40px;
-    display:flex;
-    gap:20px;
-}
-
-.nav button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    font-weight:600;
-    cursor:pointer;
-    background:#00e5ff;
-    color:black;
-    transition:0.3s;
-}
-
-.nav button:hover{
-    background:#00ffcc;
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-
-<div class="sidebar">
-    <div>
-        <h3>Presentasi Tesis</h3>
-        <p><b>Benyamin Batau</b><br>NIM: 240020301078</p>
-    </div>
-
-    <a class="demo-btn" href="https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/" target="_blank">
-        🔬 Buka Aplikasi Demo
-    </a>
-</div>
-
-<div class="slide-container">
-
-<!-- SLIDE 1 -->
-<div class="slide active">
-    <h1>Implementasi Color Grab & ChatGPT</h1>
-    <h2>Diagnosis Insulator Busi Berbasis AI</h2>
-    <p>
-        Program Studi Pendidikan Teknologi Kejuruan<br>
-        Universitas Negeri Makassar
-    </p>
-</div>
-
-<!-- SLIDE 2 -->
-<div class="slide">
-    <h2>Latar Belakang</h2>
-    <ul>
-        <li>Siswa kesulitan memahami diagnosis kondisi mesin akibat subjektivitas analisis warna busi.</li>
-        <li>Terbatasnya media pembelajaran interaktif di SMK.</li>
-    </ul>
-</div>
-
-<!-- SLIDE 3 -->
-<div class="slide">
-    <h2>Rumusan Masalah</h2>
-    <ul>
-        <li>Pemanfaatan Color Grab & ChatGPT dalam menginterpretasi warna insulator busi.</li>
-        <li>Peningkatan keterampilan siswa pada pembelajaran pemeliharaan mesin.</li>
-        <li>Perbedaan hasil belajar kelas eksperimen dan kontrol.</li>
-    </ul>
-</div>
-
-<!-- SLIDE 4 -->
-<div class="slide">
-    <h2>Metodologi Penelitian</h2>
-    <ul>
-        <li>Desain: Quasi Experimental - Nonequivalent Control Group Design</li>
-        <li>Subjek: 44 siswa (22 eksperimen, 22 kontrol)</li>
-    </ul>
-</div>
-
-<!-- SLIDE 5 -->
-<div class="slide">
-    <h2>Pengujian Instrumen</h2>
-    <ul>
-        <li>Validitas: Pearson Product Moment (r = 0,403 - 0,778)</li>
-        <li>Reliabilitas: Cronbach's Alpha = 0,914</li>
-        <li>Tingkat kesukaran: mudah, sedang, sukar</li>
-    </ul>
-</div>
-
-<!-- SLIDE 6 -->
-<div class="slide">
-    <h2>Uji Hipotesis</h2>
-    <p>t-hitung = -2,846</p>
-    <p>Sig. (2-tailed) = 0,007 &lt; 0,05</p>
-    <p><b>H₀ ditolak, H₁ diterima</b></p>
-</div>
-
-<!-- SLIDE 7 -->
-<div class="slide">
-    <h2>Hasil N-Gain</h2>
-    <p>Kelas Eksperimen: <b>0,74 (Tinggi)</b></p>
-    <p>Kelas Kontrol: <b>0,61 (Sedang)</b></p>
-</div>
-
-<!-- SLIDE 8 -->
-<div class="slide">
-    <h2>Kesimpulan</h2>
-    <ul>
-        <li>Color Grab memberikan data RGB objektif.</li>
-        <li>ChatGPT menginterpretasi secara kontekstual.</li>
-        <li>Terdapat peningkatan signifikan hasil belajar siswa.</li>
-    </ul>
-</div>
-
-<div class="nav">
-    <button onclick="prevSlide()">◀ Sebelumnya</button>
-    <button onclick="nextSlide()">Berikutnya ▶</button>
-</div>
-
-</div>
-</div>
-
-<script>
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
-
-function showSlide(index){
-    slides.forEach(slide => slide.classList.remove("active"));
-    slides[index].classList.add("active");
-}
-
-function nextSlide(){
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide(){
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-document.addEventListener("keydown", function(e){
-    if(e.key === "ArrowRight") nextSlide();
-    if(e.key === "ArrowLeft") prevSlide();
+slide1.addText("PENERAPAN METODE DETEKSI INSULATOR BUSI", {
+  x: 0.5, y: 1.0, w: 9, h: 0.7,
+  fontSize: 32, bold: true, color: WHITE, align: "center"
 });
-</script>
 
-</body>
-</html>
+slide1.addText("MENGGUNAKAN APLIKASI COLOR GRAB", {
+  x: 0.5, y: 1.8, w: 9, h: 0.6,
+  fontSize: 28, bold: true, color: WHITE, align: "center"
+});
+
+slide1.addText("BERBANTUAN ANALISIS CHAT GPT", {
+  x: 0.5, y: 2.5, w: 9, h: 0.6,
+  fontSize: 28, bold: true, color: WHITE, align: "center"
+});
+
+slide1.addText("DALAM PRAKTIK PEMELIHARAAN MESIN", {
+  x: 0.5, y: 3.2, w: 9, h: 0.6,
+  fontSize: 28, bold: true, color: WHITE, align: "center"
+});
+
+slide1.addShape(pres.shapes.RECTANGLE, {
+  x: 3.5, y: 3.9, w: 3, h: 0.05,
+  fill: { color: WHITE }
+});
+
+slide1.addText("BENYAMIN BATAU", {
+  x: 0.5, y: 4.2, w: 9, h: 0.35,
+  fontSize: 20, color: WHITE, align: "center"
+});
+
+slide1.addText("NIM: 240020301078", {
+  x: 0.5, y: 4.6, w: 9, h: 0.3,
+  fontSize: 18, color: WHITE, align: "center"
+});
+
+slide1.addText([
+  { text: "Pembimbing I: ", options: { fontSize: 15, color: WHITE } },
+  { text: "Prof. Dr. Darmawang, M.Kes", options: { fontSize: 15, color: WHITE, bold: true, breakLine: true } },
+  { text: "Pembimbing II: ", options: { fontSize: 15, color: WHITE } },
+  { text: "Prof. Dr. Ir. Muh. Yahya, M.Kes., M.Eng., IPU., ASEAN Eng.", options: { fontSize: 15, color: WHITE, bold: true } }
+], {
+  x: 0.5, y: 5.0, w: 9, h: 0.5,
+  align: "center", valign: "top"
+});
+
+// ==================== SLIDE 2: RUMUSAN MASALAH ====================
+let slide2 = pres.addSlide();
+slide2.background = { color: SECONDARY_COLOR };
+
+slide2.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide2.addText("RUMUSAN MASALAH", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide2.addText([
+  { text: "Bagaimana pemanfaatan aplikasi Color Grab berbantuan ChatGPT dalam mengakurasi dan menginterpretasikan data warna insulator busi untuk mendukung peningkatan pemahaman siswa terhadap kondisi mesin?", options: { bullet: true, fontSize: 18, breakLine: true } },
+  { text: " ", options: { fontSize: 8, breakLine: true } },
+  { text: "Sejauh mana penerapan aplikasi Color Grab berbantuan ChatGPT dapat meningkatkan keterampilan siswa pada pembelajaran pemeliharaan mesin Kompetensi Keahlian TKR dan TSM (Teknik Otomotif)?", options: { bullet: true, fontSize: 18, breakLine: true } },
+  { text: " ", options: { fontSize: 8, breakLine: true } },
+  { text: "Apakah ada perbedaan hasil belajar antara kelas eksperimen yang menggunakan aplikasi Color Grab berbantuan ChatGPT dengan kelas kontrol yang melaksanakan pembelajaran konvensional?", options: { bullet: true, fontSize: 18 } }
+], {
+  x: 0.6, y: 1.2, w: 8.8, h: 4.0,
+  color: TEXT_COLOR, align: "left", valign: "top"
+});
+
+// ==================== SLIDE 3: METODOLOGI - DESAIN ====================
+let slide3 = pres.addSlide();
+slide3.background = { color: SECONDARY_COLOR };
+
+slide3.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide3.addText("METODOLOGI PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide3.addText("Desain Penelitian: Quasi Experimental Design", {
+  x: 0.6, y: 1.1, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+slide3.addText("Nonequivalent Control Group Design", {
+  x: 0.6, y: 1.6, w: 8.8, h: 0.35,
+  fontSize: 18, italic: true, color: ACCENT_COLOR
+});
+
+// Tabel desain
+slide3.addTable([
+  [
+    { text: "Kelompok", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Pretest", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Perlakuan", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Posttest", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } }
+  ],
+  [
+    { text: "Eksperimen", options: { fontSize: 15 } },
+    { text: "O1", options: { fontSize: 15, align: "center" } },
+    { text: "X1 (Color Grab + ChatGPT)", options: { fontSize: 15 } },
+    { text: "O2", options: { fontSize: 15, align: "center" } }
+  ],
+  [
+    { text: "Kontrol", options: { fontSize: 15 } },
+    { text: "O3", options: { fontSize: 15, align: "center" } },
+    { text: "X2 (Konvensional)", options: { fontSize: 15 } },
+    { text: "O4", options: { fontSize: 15, align: "center" } }
+  ]
+], {
+  x: 1.2, y: 2.2, w: 7.6, h: 1.3,
+  border: { pt: 1, color: PRIMARY_COLOR },
+  colW: [1.6, 1.2, 3.6, 1.2]
+});
+
+slide3.addText([
+  { text: "Subjek Penelitian:", options: { bold: true, fontSize: 16, breakLine: true } },
+  { text: "• Siswa kelas XI TKR dan TSM SMKN 1 Sumarorong", options: { fontSize: 15, breakLine: true } },
+  { text: "• Total responden: 44 siswa (22 kelas eksperimen, 22 kelas kontrol)", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 3.8, w: 8.8, h: 1.2,
+  color: TEXT_COLOR
+});
+
+// ==================== SLIDE 4: METODOLOGI - INSTRUMEN ====================
+let slide4 = pres.addSlide();
+slide4.background = { color: SECONDARY_COLOR };
+
+slide4.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide4.addText("METODOLOGI PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide4.addText("Instrumen & Teknik Pengumpulan Data", {
+  x: 0.6, y: 1.1, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+// Card 1
+slide4.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 1.7, w: 4.4, h: 1.1,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide4.addText("Observasi", {
+  x: 0.8, y: 1.85, w: 4, h: 0.3,
+  fontSize: 18, bold: true, color: PRIMARY_COLOR
+});
+
+slide4.addText("Mengamati pelaksanaan pembelajaran sesuai sintaks yang dirancang", {
+  x: 0.8, y: 2.25, w: 4, h: 0.5,
+  fontSize: 14, color: TEXT_COLOR
+});
+
+// Card 2
+slide4.addShape(pres.shapes.RECTANGLE, {
+  x: 5.2, y: 1.7, w: 4.4, h: 1.1,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide4.addText("Tes", {
+  x: 5.4, y: 1.85, w: 4, h: 0.3,
+  fontSize: 18, bold: true, color: PRIMARY_COLOR
+});
+
+slide4.addText("Pretest dan posttest untuk mengukur hasil belajar siswa", {
+  x: 5.4, y: 2.25, w: 4, h: 0.5,
+  fontSize: 14, color: TEXT_COLOR
+});
+
+slide4.addText("Pengujian Instrumen:", {
+  x: 0.6, y: 3.1, w: 8.8, h: 0.35,
+  fontSize: 18, bold: true, color: TEXT_COLOR
+});
+
+slide4.addText([
+  { text: "• Uji Validitas: ", options: { fontSize: 15, bold: true } },
+  { text: "Pearson Product Moment (24 butir soal valid, r-hitung 0,403-0,778)", options: { fontSize: 15, breakLine: true } },
+  { text: "• Uji Reliabilitas: ", options: { fontSize: 15, bold: true } },
+  { text: "Cronbach's Alpha = 0,914 (kategori baik)", options: { fontSize: 15, breakLine: true } },
+  { text: "• Uji Tingkat Kesukaran: ", options: { fontSize: 15, bold: true } },
+  { text: "Distribusi soal mudah, sedang, dan sukar", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 3.6, w: 8.8, h: 1.3,
+  color: TEXT_COLOR
+});
+
+// ==================== SLIDE 5: METODOLOGI - UJI PRASYARAT ====================
+let slide5 = pres.addSlide();
+slide5.background = { color: SECONDARY_COLOR };
+
+slide5.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide5.addText("METODOLOGI PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide5.addText("Uji Prasyarat Analisis", {
+  x: 0.6, y: 1.1, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+slide5.addTable([
+  [
+    { text: "Uji", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Metode", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Hasil", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } },
+    { text: "Kesimpulan", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 16 } }
+  ],
+  [
+    { text: "Normalitas", options: { fontSize: 14 } },
+    { text: "Shapiro-Wilk", options: { fontSize: 14 } },
+    { text: "Sig. > 0,05", options: { fontSize: 14, align: "center" } },
+    { text: "Data berdistribusi normal", options: { fontSize: 14, fill: { color: "D1FAE5" } } }
+  ],
+  [
+    { text: "Homogenitas", options: { fontSize: 14 } },
+    { text: "Levene's Test", options: { fontSize: 14 } },
+    { text: "Sig. > 0,05", options: { fontSize: 14, align: "center" } },
+    { text: "Varians homogen", options: { fontSize: 14, fill: { color: "D1FAE5" } } }
+  ],
+  [
+    { text: "Linearitas", options: { fontSize: 14 } },
+    { text: "Test for Linearity", options: { fontSize: 14 } },
+    { text: "Sig. = 0,041", options: { fontSize: 14, align: "center" } },
+    { text: "Hubungan linear signifikan", options: { fontSize: 14, fill: { color: "D1FAE5" } } }
+  ]
+], {
+  x: 0.6, y: 1.7, w: 8.8, h: 1.8,
+  border: { pt: 1, color: PRIMARY_COLOR },
+  colW: [1.8, 2.0, 1.5, 3.5]
+});
+
+slide5.addText("Kesimpulan:", {
+  x: 0.6, y: 3.8, w: 8.8, h: 0.3,
+  fontSize: 18, bold: true, color: TEXT_COLOR
+});
+
+slide5.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 4.2, w: 8.8, h: 0.6,
+  fill: { color: "DBEAFE" },
+  line: { color: PRIMARY_COLOR, width: 1 }
+});
+
+slide5.addText("Semua uji prasyarat terpenuhi, data memenuhi syarat untuk dilakukan uji statistik parametrik (Independent Sample t-Test)", {
+  x: 0.8, y: 4.3, w: 8.4, h: 0.4,
+  fontSize: 15, bold: true, color: ACCENT_COLOR, align: "center", valign: "middle"
+});
+
+// ==================== SLIDE 6: METODOLOGI - UJI HIPOTESIS ====================
+let slide6 = pres.addSlide();
+slide6.background = { color: SECONDARY_COLOR };
+
+slide6.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide6.addText("METODOLOGI PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide6.addText("Uji Hipotesis (Independent Sample t-Test)", {
+  x: 0.6, y: 1.1, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+slide6.addText("Hipotesis:", {
+  x: 0.6, y: 1.7, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide6.addText([
+  { text: "H₀: ", options: { fontSize: 15, bold: true } },
+  { text: "Tidak ada perbedaan signifikan hasil belajar antara kelas eksperimen dan kelas kontrol", options: { fontSize: 15, breakLine: true } },
+  { text: "H₁: ", options: { fontSize: 15, bold: true } },
+  { text: "Ada perbedaan signifikan hasil belajar antara kelas eksperimen dan kelas kontrol", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 2.1, w: 8.8, h: 0.7,
+  color: TEXT_COLOR
+});
+
+slide6.addText("Kriteria Pengujian:", {
+  x: 0.6, y: 2.95, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide6.addText("Jika nilai Sig. (2-tailed) < 0,05, maka H₀ ditolak dan H₁ diterima", {
+  x: 0.6, y: 3.35, w: 8.8, h: 0.3,
+  fontSize: 15, color: TEXT_COLOR
+});
+
+slide6.addShape(pres.shapes.RECTANGLE, {
+  x: 2.0, y: 3.9, w: 6.0, h: 1.3,
+  fill: { color: "10B981" }
+});
+
+slide6.addText([
+  { text: "t-hitung = -2,846", options: { fontSize: 22, bold: true, color: WHITE, breakLine: true } },
+  { text: "Sig. (2-tailed) = 0,007 < 0,05", options: { fontSize: 20, bold: true, color: WHITE, breakLine: true } },
+  { text: "Kesimpulan: H₀ ditolak, H₁ diterima", options: { fontSize: 18, color: WHITE } }
+], {
+  x: 2.2, y: 4.05, w: 5.6, h: 1.0,
+  align: "center", valign: "middle"
+});
+
+// ==================== SLIDE 7: HASIL - OBSERVASI ====================
+let slide7 = pres.addSlide();
+slide7.background = { color: SECONDARY_COLOR };
+
+slide7.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide7.addText("HASIL PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide7.addText("Hasil Observasi Penerapan Aplikasi", {
+  x: 0.6, y: 1.0, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+// Statistik deskriptif
+slide7.addTable([
+  [
+    { text: "Kelompok", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Mean", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Min", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Max", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Std. Dev", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } }
+  ],
+  [
+    { text: "Eksperimen", options: { fontSize: 14 } },
+    { text: "19.09", options: { fontSize: 14, align: "center", bold: true } },
+    { text: "12", options: { fontSize: 14, align: "center" } },
+    { text: "25", options: { fontSize: 14, align: "center" } },
+    { text: "3.23", options: { fontSize: 14, align: "center" } }
+  ],
+  [
+    { text: "Kontrol", options: { fontSize: 14 } },
+    { text: "17.36", options: { fontSize: 14, align: "center" } },
+    { text: "12", options: { fontSize: 14, align: "center" } },
+    { text: "23", options: { fontSize: 14, align: "center" } },
+    { text: "4.30", options: { fontSize: 14, align: "center" } }
+  ]
+], {
+  x: 2.0, y: 1.6, w: 6.0, h: 1.2,
+  border: { pt: 1, color: PRIMARY_COLOR }
+});
+
+slide7.addText("Distribusi Kategori Nilai:", {
+  x: 0.6, y: 3.0, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide7.addText([
+  { text: "Kelas Eksperimen: ", options: { bold: true, fontSize: 15 } },
+  { text: "Didominasi kategori Baik (36,36%) dan Cukup (22,73%)", options: { fontSize: 15, breakLine: true } },
+  { text: "Kelas Kontrol: ", options: { bold: true, fontSize: 15 } },
+  { text: "Didominasi kategori Sangat Baik (31,82%) tetapi juga kategori Kurang lebih tinggi (22,73%)", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 3.4, w: 8.8, h: 1.0,
+  color: TEXT_COLOR
+});
+
+slide7.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 4.6, w: 8.8, h: 0.6,
+  fill: { color: "FEF3C7" },
+  line: { color: "F59E0B", width: 1 }
+});
+
+slide7.addText("Kelas eksperimen menunjukkan distribusi yang lebih merata dengan keterlibatan siswa yang lebih konsisten", {
+  x: 0.8, y: 4.7, w: 8.4, h: 0.4,
+  fontSize: 14, italic: true, color: TEXT_COLOR, align: "center", valign: "middle"
+});
+
+// ==================== SLIDE 8: HASIL - PRETEST & POSTTEST ====================
+let slide8 = pres.addSlide();
+slide8.background = { color: SECONDARY_COLOR };
+
+slide8.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide8.addText("HASIL PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide8.addText("Perbandingan Nilai Pretest dan Posttest", {
+  x: 0.6, y: 1.0, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+// Tabel perbandingan
+slide8.addTable([
+  [
+    { text: "", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Pretest", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15, colspan: 2 } },
+    { text: "Posttest", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15, colspan: 2 } }
+  ],
+  [
+    { text: "", options: { bold: true, fill: { color: ACCENT_COLOR }, color: WHITE, fontSize: 14 } },
+    { text: "Eksperimen", options: { bold: true, fill: { color: ACCENT_COLOR }, color: WHITE, fontSize: 14 } },
+    { text: "Kontrol", options: { bold: true, fill: { color: ACCENT_COLOR }, color: WHITE, fontSize: 14 } },
+    { text: "Eksperimen", options: { bold: true, fill: { color: ACCENT_COLOR }, color: WHITE, fontSize: 14 } },
+    { text: "Kontrol", options: { bold: true, fill: { color: ACCENT_COLOR }, color: WHITE, fontSize: 14 } }
+  ],
+  [
+    { text: "Mean", options: { fontSize: 14, bold: true } },
+    { text: "37.12", options: { fontSize: 14, align: "center" } },
+    { text: "39.20", options: { fontSize: 14, align: "center" } },
+    { text: "80.25", options: { fontSize: 14, align: "center", bold: true, fill: { color: "D1FAE5" } } },
+    { text: "75.38", options: { fontSize: 14, align: "center" } }
+  ],
+  [
+    { text: "Min", options: { fontSize: 14 } },
+    { text: "25.00", options: { fontSize: 14, align: "center" } },
+    { text: "20.00", options: { fontSize: 14, align: "center" } },
+    { text: "66.67", options: { fontSize: 14, align: "center" } },
+    { text: "62.50", options: { fontSize: 14, align: "center" } }
+  ],
+  [
+    { text: "Max", options: { fontSize: 14 } },
+    { text: "50.00", options: { fontSize: 14, align: "center" } },
+    { text: "54.17", options: { fontSize: 14, align: "center" } },
+    { text: "95.83", options: { fontSize: 14, align: "center", bold: true, fill: { color: "D1FAE5" } } },
+    { text: "91.67", options: { fontSize: 14, align: "center" } }
+  ],
+  [
+    { text: "Std. Dev", options: { fontSize: 14 } },
+    { text: "6.67", options: { fontSize: 14, align: "center" } },
+    { text: "9.85", options: { fontSize: 14, align: "center" } },
+    { text: "7.69", options: { fontSize: 14, align: "center" } },
+    { text: "7.67", options: { fontSize: 14, align: "center" } }
+  ]
+], {
+  x: 0.8, y: 1.6, w: 8.4, h: 2.1,
+  border: { pt: 1, color: PRIMARY_COLOR }
+});
+
+slide8.addText("Temuan Kunci:", {
+  x: 0.6, y: 3.9, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide8.addText([
+  { text: "• Kondisi awal kedua kelas setara (pretest serupa)", options: { fontSize: 15, breakLine: true } },
+  { text: "• Kelas eksperimen: peningkatan +43,13 poin vs kelas kontrol +36,18 poin", options: { fontSize: 15, breakLine: true } },
+  { text: "• Distribusi posttest eksperimen: 50% kategori Baik, 18,18% Sangat Baik", options: { fontSize: 15, breakLine: true } },
+  { text: "• Kelas kontrol lebih dominan pada kategori Cukup (40,91%)", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 4.3, w: 8.8, h: 1.1,
+  color: TEXT_COLOR
+});
+
+// ==================== SLIDE 9: HASIL - N-GAIN ====================
+let slide9 = pres.addSlide();
+slide9.background = { color: SECONDARY_COLOR };
+
+slide9.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide9.addText("HASIL PENELITIAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide9.addText("Analisis N-Gain (Efektivitas Pembelajaran)", {
+  x: 0.6, y: 1.0, w: 8.8, h: 0.4,
+  fontSize: 20, bold: true, color: TEXT_COLOR
+});
+
+// Kotak N-Gain
+slide9.addShape(pres.shapes.RECTANGLE, {
+  x: 1.5, y: 1.6, w: 3.5, h: 1.7,
+  fill: { color: "10B981" }
+});
+
+slide9.addText("Kelas Eksperimen", {
+  x: 1.7, y: 1.8, w: 3.1, h: 0.35,
+  fontSize: 16, bold: true, color: WHITE, align: "center"
+});
+
+slide9.addText("0.74", {
+  x: 1.7, y: 2.25, w: 3.1, h: 0.6,
+  fontSize: 56, bold: true, color: WHITE, align: "center"
+});
+
+slide9.addText("Kategori: TINGGI", {
+  x: 1.7, y: 2.95, w: 3.1, h: 0.25,
+  fontSize: 14, color: WHITE, align: "center"
+});
+
+slide9.addShape(pres.shapes.RECTANGLE, {
+  x: 5.0, y: 1.6, w: 3.5, h: 1.7,
+  fill: { color: "F59E0B" }
+});
+
+slide9.addText("Kelas Kontrol", {
+  x: 5.2, y: 1.8, w: 3.1, h: 0.35,
+  fontSize: 16, bold: true, color: WHITE, align: "center"
+});
+
+slide9.addText("0.61", {
+  x: 5.2, y: 2.25, w: 3.1, h: 0.6,
+  fontSize: 56, bold: true, color: WHITE, align: "center"
+});
+
+slide9.addText("Kategori: SEDANG", {
+  x: 5.2, y: 2.95, w: 3.1, h: 0.25,
+  fontSize: 14, color: WHITE, align: "center"
+});
+
+slide9.addText("Distribusi Kategori N-Gain:", {
+  x: 0.6, y: 3.5, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide9.addTable([
+  [
+    { text: "Kelompok", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Tinggi (g > 0.7)", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Sedang (0.3 ≤ g ≤ 0.7)", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } },
+    { text: "Rendah (g < 0.3)", options: { bold: true, fill: { color: PRIMARY_COLOR }, color: WHITE, fontSize: 15 } }
+  ],
+  [
+    { text: "Eksperimen", options: { fontSize: 14 } },
+    { text: "68,18% (15 siswa)", options: { fontSize: 14, align: "center", bold: true, fill: { color: "D1FAE5" } } },
+    { text: "31,82% (7 siswa)", options: { fontSize: 14, align: "center" } },
+    { text: "0%", options: { fontSize: 14, align: "center" } }
+  ],
+  [
+    { text: "Kontrol", options: { fontSize: 14 } },
+    { text: "31,82% (7 siswa)", options: { fontSize: 14, align: "center" } },
+    { text: "68,18% (15 siswa)", options: { fontSize: 14, align: "center" } },
+    { text: "0%", options: { fontSize: 14, align: "center" } }
+  ]
+], {
+  x: 0.8, y: 3.9, w: 8.4, h: 1.3,
+  border: { pt: 1, color: PRIMARY_COLOR }
+});
+
+// ==================== SLIDE 10: PEMBAHASAN ====================
+let slide10 = pres.addSlide();
+slide10.background = { color: SECONDARY_COLOR };
+
+slide10.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide10.addText("PEMBAHASAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide10.addText("Faktor Keberhasilan Pembelajaran dengan Color Grab & ChatGPT", {
+  x: 0.6, y: 1.0, w: 8.8, h: 0.4,
+  fontSize: 18, bold: true, color: TEXT_COLOR
+});
+
+// Card 1
+slide10.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 1.6, w: 4.4, h: 1.0,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide10.addText("Objektivitas Data", {
+  x: 0.8, y: 1.75, w: 4.0, h: 0.3,
+  fontSize: 16, bold: true, color: PRIMARY_COLOR
+});
+
+slide10.addText("Aplikasi Color Grab memberikan data RGB yang terukur, mengurangi subjektivitas dalam analisis warna busi", {
+  x: 0.8, y: 2.1, w: 4.0, h: 0.45,
+  fontSize: 13, color: TEXT_COLOR
+});
+
+// Card 2
+slide10.addShape(pres.shapes.RECTANGLE, {
+  x: 5.2, y: 1.6, w: 4.4, h: 1.0,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide10.addText("Analisis Kontekstual", {
+  x: 5.4, y: 1.75, w: 4.0, h: 0.3,
+  fontSize: 16, bold: true, color: PRIMARY_COLOR
+});
+
+slide10.addText("ChatGPT menginterpretasi data warna dan memberikan penjelasan teknis yang mudah dipahami siswa", {
+  x: 5.4, y: 2.1, w: 4.0, h: 0.45,
+  fontSize: 13, color: TEXT_COLOR
+});
+
+// Card 3
+slide10.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 2.8, w: 4.4, h: 1.0,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide10.addText("Pembelajaran Aktif", {
+  x: 0.8, y: 2.95, w: 4.0, h: 0.3,
+  fontSize: 16, bold: true, color: PRIMARY_COLOR
+});
+
+slide10.addText("Siswa terlibat langsung dalam proses observasi, pengukuran, dan analisis, bukan hanya menerima informasi", {
+  x: 0.8, y: 3.3, w: 4.0, h: 0.45,
+  fontSize: 13, color: TEXT_COLOR
+});
+
+// Card 4
+slide10.addShape(pres.shapes.RECTANGLE, {
+  x: 5.2, y: 2.8, w: 4.4, h: 1.0,
+  fill: { color: WHITE },
+  line: { color: PRIMARY_COLOR, width: 2 }
+});
+
+slide10.addText("Keterampilan Abad 21", {
+  x: 5.4, y: 2.95, w: 4.0, h: 0.3,
+  fontSize: 16, bold: true, color: PRIMARY_COLOR
+});
+
+slide10.addText("Mengembangkan literasi digital dan kemampuan berpikir kritis dalam menganalisis data teknis", {
+  x: 5.4, y: 3.3, w: 4.0, h: 0.45,
+  fontSize: 13, color: TEXT_COLOR
+});
+
+slide10.addText("Implikasi:", {
+  x: 0.6, y: 4.1, w: 8.8, h: 0.3,
+  fontSize: 17, bold: true, color: TEXT_COLOR
+});
+
+slide10.addText([
+  { text: "• Pembelajaran berbasis teknologi AI efektif meningkatkan hasil belajar siswa vokasi", options: { fontSize: 15, breakLine: true } },
+  { text: "• Integrasi aplikasi mobile dan AI mendukung diagnosis teknis yang lebih akurat", options: { fontSize: 15, breakLine: true } },
+  { text: "• Pendekatan ini dapat diadaptasi untuk kompetensi teknik otomotif lainnya", options: { fontSize: 15 } }
+], {
+  x: 0.6, y: 4.5, w: 8.8, h: 0.9,
+  color: TEXT_COLOR
+});
+
+// ==================== SLIDE 11: KESIMPULAN ====================
+let slide11 = pres.addSlide();
+slide11.background = { color: SECONDARY_COLOR };
+
+slide11.addShape(pres.shapes.RECTANGLE, {
+  x: 0, y: 0, w: 10, h: 0.9,
+  fill: { color: PRIMARY_COLOR }
+});
+
+slide11.addText("KESIMPULAN", {
+  x: 0.5, y: 0.25, w: 9, h: 0.4,
+  fontSize: 36, bold: true, color: WHITE, align: "left"
+});
+
+slide11.addText([
+  { text: "Aplikasi Color Grab dan ChatGPT efektif meningkatkan akurasi diagnosis kondisi mesin melalui analisis warna insulator busi dengan data RGB yang terukur dan interpretasi AI yang kontekstual", options: { bullet: true, fontSize: 16, breakLine: true } },
+  { text: " ", options: { fontSize: 6, breakLine: true } },
+  { text: "Penerapan teknologi ini meningkatkan hasil belajar siswa secara signifikan dengan rata-rata posttest kelas eksperimen (80,25) lebih tinggi dari kelas kontrol (75,38)", options: { bullet: true, fontSize: 16, breakLine: true } },
+  { text: " ", options: { fontSize: 6, breakLine: true } },
+  { text: "Terdapat perbedaan signifikan antara kelas eksperimen dan kontrol (t-hitung = -2,846, Sig. = 0,007 < 0,05) dengan N-Gain kelas eksperimen kategori Tinggi (0,74) vs kelas kontrol kategori Sedang (0,61)", options: { bullet: true, fontSize: 16 } }
+], {
+  x: 0.6, y: 1.2, w: 8.8, h: 3.5,
+  color: TEXT_COLOR, align: "left", valign: "top"
+});
+
+slide11.addShape(pres.shapes.RECTANGLE, {
+  x: 0.6, y: 4.9, w: 8.8, h: 0.6,
+  fill: { color: "DBEAFE" },
+  line: { color: PRIMARY_COLOR, width: 1 }
+});
+
+slide11.addText("Pembelajaran berbasis Color Grab dan ChatGPT terbukti efektif meningkatkan keterampilan diagnosis mesin siswa SMK", {
+  x: 0.8, y: 5.0, w: 8.4, h: 0.4,
+  fontSize: 15, bold: true, italic: true, color: ACCENT_COLOR, align: "center", valign: "middle"
+});
+
+// ==================== SLIDE 12: PENUTUP ====================
+let slide12 = pres.addSlide();
+slide12.background = { color: PRIMARY_COLOR };
+
+slide12.addText("TERIMA KASIH", {
+  x: 0.5, y: 2.0, w: 9, h: 0.9,
+  fontSize: 54, bold: true, color: WHITE, align: "center"
+});
+
+slide12.addShape(pres.shapes.RECTANGLE, {
+  x: 3.5, y: 3.1, w: 3, h: 0.05,
+  fill: { color: WHITE }
+});
+
+slide12.addText("BENYAMIN BATAU", {
+  x: 0.5, y: 3.4, w: 9, h: 0.4,
+  fontSize: 22, color: WHITE, align: "center"
+});
+
+slide12.addText("NIM: 240020301078", {
+  x: 0.5, y: 3.9, w: 9, h: 0.35,
+  fontSize: 18, color: WHITE, align: "center"
+});
+
+slide12.addText("Program Studi Pendidikan Teknologi Kejuruan", {
+  x: 0.5, y: 4.4, w: 9, h: 0.3,
+  fontSize: 16, color: WHITE, align: "center"
+});
+
+slide12.addText("Universitas Negeri Makassar", {
+  x: 0.5, y: 4.8, w: 9, h: 0.3,
+  fontSize: 16, color: WHITE, align: "center"
+});
+
+// Save presentation
+pres.writeFile({ fileName: "/mnt/user-data/outputs/Presentasi_Tesis_Benyamin_Batau.pptx" })
+  .then(() => {
+    console.log("✓ Presentasi berhasil dibuat!");
+  })
+  .catch((err) => {
+    console.error("Error:", err);
+  });
