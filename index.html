@@ -10,7 +10,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Poppins', sans-serif; min-height:100vh; background:linear-gradient(135deg, #0a1929, #1a237e, #283593); color:#e3f2fd; }
     .container { display:flex; min-height:100vh; }
-    .sidebar { width:300px; background:rgba(13,27,42,0.9); padding:30px 20px; border-right:1px solid rgba(100,181,246,0.2); }
+    .sidebar { width:300px; background:rgba(13,27,42,0.9); padding:30px 20px; border-right:1px solid rgba(100,181,246,0.2); flex-shrink:0; }
     .slide-container { flex:1; padding:40px 60px; display:flex; align-items:center; justify-content:center; }
     .slide { width:100%; max-width:1350px; display:none; }
     .slide.active { display:block; }
@@ -19,9 +19,9 @@
     .highlight { background:rgba(33,150,243,0.15); padding:18px; border-radius:10px; border-left:5px solid #2196f3; margin:20px 0; }
     .chart-container { height:420px; background:rgba(13,27,42,0.6); padding:15px; border-radius:10px; margin:25px 0; }
     .nav { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:30px; z-index:100; }
-    .nav button { padding:12px 28px; font-size:1.1rem; background:linear-gradient(90deg,#2196f3,#64b5f6); color:white; border:none; border-radius:10px; cursor:pointer; }
+    .nav button { padding:12px 28px; font-size:1.1rem; background:linear-gradient(90deg,#2196f3,#64b5f6); color:white; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
     .nav button:hover { opacity:0.9; transform:scale(1.05); }
-    @media (max-width:1100px) { .container { flex-direction:column; } .sidebar { width:100%; } }
+    @media (max-width:1100px) { .container { flex-direction:column; } .sidebar { width:100%; } .slide-container { padding:30px 25px; } }
 </style>
 </head>
 <body>
@@ -34,15 +34,71 @@
         <p>I. Prof. Dr. Darmawang, M.Kes</p>
         <p>II. Prof. Ir. H. Muh. Yahya, M.Kes., M.Eng., IPU., ASEAN Eng.</p>
         <a href="https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/" target="_blank" style="display:block; margin-top:30px; padding:15px; background:#4caf50; color:white; text-align:center; border-radius:10px; text-decoration:none; font-weight:600;">
-            🚀 Demo Aplikasi
+            🚀 Demo Aplikasi Deteksi Busi
         </a>
     </div>
 
     <div class="slide-container">
-        <!-- Slide sebelumnya tetap (pentingnya, rumusan, validitas, observasi) -->
-        <!-- ... (salin slide 1-4 dari kode sebelumnya jika perlu) ... -->
+        <!-- Slide 1: Pentingnya Penelitian Ini -->
+        <div class="slide active">
+            <h2>Pentingnya Penelitian Ini</h2>
+            <div class="highlight">
+                <p>• Analisis warna insulator busi manual subjektif → akurasi diagnosis kondisi mesin rendah pada siswa SMK.</p>
+                <p>• Kesenjangan kompetensi lulusan SMK dengan kebutuhan industri otomotif (akurasi & objektivitas).</p>
+                <p>• Solusi: Color Grab (data RGB/HEX objektif) + ChatGPT (interpretasi kontekstual & rekomendasi) → pembelajaran lebih akurat, interaktif, relevan era Industri 4.0.</p>
+                <p>• Tujuan: Tingkatkan pemahaman, keterampilan diagnosis, dan hasil belajar siswa TKR/TSM di SMKN 1 Sumarorong.</p>
+            </div>
+        </div>
 
-        <!-- Slide baru: Hasil Pretest, Posttest & N-Gain (berpasangan) -->
+        <!-- Slide 2: Rumusan Masalah -->
+        <div class="slide">
+            <h2>Rumusan Masalah</h2>
+            <div class="highlight">
+                <ol style="padding-left:30px; line-height:2;">
+                    <li>Bagaimana pemanfaatan aplikasi Color Grab berbantuan analisis ChatGPT dalam mengakurasi dan menginterpretasikan data warna insulator busi untuk mendukung peningkatan pemahaman siswa terhadap kondisi mesin?</li>
+                    <li>Sejauh mana penerapan aplikasi Color Grab berbantuan analisis ChatGPT dapat meningkatkan keterampilan siswa pada pembelajaran pemeliharaan mesin Kompetensi Keahlian TKR dan TSM?</li>
+                    <li>Apakah ada perbedaan hasil belajar antara kelas eksperimen yang menggunakan aplikasi Color Grab berbantuan analisis ChatGPT dengan kelas kontrol yang melaksanakan pembelajaran konvensional?</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Slide 3: Uji Validitas & Reliabilitas -->
+        <div class="slide">
+            <h2>Uji Validitas & Reliabilitas Instrumen</h2>
+            <div class="highlight">
+                <p><strong>Validitas:</strong> 24 butir soal diuji pada 25 responden (N=25, df=23, r-tabel 0,396 α=0,05).</p>
+                <p>r-hitung: 0,403 – 0,778 → **semua 24 butir valid** (r-hitung > r-tabel).</p>
+                <p><strong>Reliabilitas:</strong> Cronbach's Alpha = <strong>0,914</strong> (kategori SANGAT BAIK, ≥0,80).</p>
+                <p><strong>Kesimpulan:</strong> Instrumen tes pretest-posttest sangat valid & reliabel untuk mengukur hasil belajar diagnosis kondisi mesin.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Perbandingan Kategori Hasil Observasi -->
+        <div class="slide">
+            <h2>Perbandingan Kategori Hasil Observasi Kemampuan Siswa</h2>
+            <div class="chart-container">
+                <canvas id="obsChart"></canvas>
+            </div>
+            <div style="display:flex; justify-content:space-around; margin-top:20px; font-size:1.1rem;">
+                <div style="text-align:center;">
+                    <p style="color:#4caf50; font-weight:700;">Eksperimen (n=22)</p>
+                    <p>Sangat Baik (21–25): 27,27% (6 siswa)</p>
+                    <p>Baik (18–20): 36,36% (8 siswa)</p>
+                    <p>Cukup (15–17): 31,82% (7 siswa)</p>
+                    <p>Kurang (11–14): 4,55% (1 siswa)</p>
+                </div>
+                <div style="text-align:center;">
+                    <p style="color:#2196f3; font-weight:700;">Kontrol (n=22)</p>
+                    <p>Sangat Baik (21–23): 31,82% (7 siswa)</p>
+                    <p>Baik (18–20): 27,27% (6 siswa)</p>
+                    <p>Cukup (15–17): 9,09% (2 siswa)</p>
+                    <p>Kurang (11–14): 31,82% (7 siswa)</p>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:15px; color:#64b5f6;">Eksperimen lebih dominan kategori Baik & Cukup, lebih sedikit Kurang → penerapan metode tingkatkan konsistensi kemampuan siswa.</p>
+        </div>
+
+        <!-- Slide 5: Hasil Pretest, Posttest & N-Gain (berpasangan) -->
         <div class="slide">
             <h2>Hasil Pretest, Posttest & N-Gain (4.3)</h2>
             <div class="chart-container">
@@ -51,26 +107,65 @@
             <div style="display:flex; justify-content:space-around; margin-top:25px; font-size:1.2rem;">
                 <div style="text-align:center; background:rgba(76,175,80,0.15); padding:15px; border-radius:10px;">
                     <p style="font-weight:700; color:#4caf50;">Kelas Eksperimen</p>
-                    <p>Pretest rata-rata: ~60–62</p>
+                    <p>Pretest rata-rata: ~61</p>
                     <p>Posttest rata-rata: <strong>80,25</strong></p>
-                    <p>N-Gain: <strong>0,70</strong> (Kategori Tinggi)</p>
-                    <p style="color:#4caf50; margin-top:10px;">Peningkatan signifikan & efektif</p>
+                    <p>N-Gain: <strong>0,70</strong> (Tinggi)</p>
+                    <p style="color:#4caf50; margin-top:10px;">Progres tajam & efektif</p>
                 </div>
                 <div style="text-align:center; background:rgba(33,150,243,0.15); padding:15px; border-radius:10px;">
                     <p style="font-weight:700; color:#2196f3;">Kelas Kontrol</p>
-                    <p>Pretest rata-rata: ~59–60</p>
+                    <p>Pretest rata-rata: ~59,5</p>
                     <p>Posttest rata-rata: <strong>76,70</strong></p>
-                    <p>N-Gain: <strong>0,62</strong> (Kategori Sedang)</p>
-                    <p style="color:#2196f3; margin-top:10px;">Peningkatan sedang</p>
+                    <p>N-Gain: <strong>0,62</strong> (Sedang)</p>
+                    <p style="color:#2196f3; margin-top:10px;">Progres sedang</p>
                 </div>
             </div>
             <p style="text-align:center; margin-top:20px; font-size:1.3rem; color:#64b5f6;">
-                Progres kelas eksperimen lebih tinggi (dari pretest ke posttest naik lebih tajam, N-Gain tinggi)
+                Visualisasi berpasangan menunjukkan progres eksperimen lebih tinggi (kenaikan posttest lebih besar + N-Gain tinggi)
             </p>
         </div>
 
-        <!-- Slide akhir tetap -->
-        <!-- ... (salin slide kesimpulan dari kode sebelumnya) ... -->
+        <!-- Slide 6: Hasil Uji Prasyarat -->
+        <div class="slide">
+            <h2>Hasil Uji Prasyarat Analisis</h2>
+            <div class="chart-container">
+                <canvas id="prasyaratChart"></canvas>
+            </div>
+            <div class="highlight" style="margin-top:20px;">
+                <p>Data memenuhi asumsi parametrik:</p>
+                <p>• Normalitas (Shapiro-Wilk): Sig. > 0,05 (kedua kelompok normal)</p>
+                <p>• Homogenitas varians (Levene): Sig. > 0,05</p>
+                <p>• Linearitas hubungan variabel: Sig. Deviation from Linearity > 0,05</p>
+                <p><strong>Kesimpulan:</strong> Layak menggunakan uji-t independen & paired t-test.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Hasil Uji-t -->
+        <div class="slide">
+            <h2>Hasil Uji Independent Sample t-Test</h2>
+            <div class="highlight" style="text-align:center; font-size:1.4rem;">
+                <p style="font-size:2.5rem; color:#4caf50; margin:30px 0;">t-hitung = -2,846 | Sig. (2-tailed) = 0,007 < 0,05</p>
+                <p>H₀ ditolak → Ada perbedaan signifikan hasil belajar</p>
+                <p>Kelas eksperimen (Color Grab + ChatGPT) lebih tinggi daripada kontrol</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="tChart"></canvas>
+            </div>
+            <p style="text-align:center; margin-top:15px;">Menjawab rumusan masalah ke-3: Metode berpengaruh signifikan.</p>
+        </div>
+
+        <!-- Slide Akhir: Kesimpulan -->
+        <div class="slide">
+            <h2>Kesimpulan</h2>
+            <div class="highlight">
+                <p>1. Color Grab + ChatGPT efektif tingkatkan akurasi & objektivitas diagnosis insulator busi.</p>
+                <p>2. Hasil belajar siswa meningkat signifikan (posttest 80,25 vs 76,70; N-Gain 0,70 tinggi vs 0,62 sedang).</p>
+                <p>3. Ada perbedaan signifikan (uji-t Sig. 0,007 < 0,05) → metode ini lebih efektif daripada konvensional.</p>
+            </div>
+            <h1 style="text-align:center; margin:80px 0 40px; font-size:3.5rem; color:#64b5f6;">TERIMA KASIH</h1>
+            <p style="text-align:center; font-size:1.8rem;">Benyamin Batau – NIM 240020301078</p>
+            <p style="text-align:center; margin-top:20px;">Siap menjawab pertanyaan</p>
+        </div>
     </div>
 </div>
 
@@ -88,9 +183,20 @@
     document.addEventListener('keydown', e=>{ if(e.key==='ArrowRight'||e.key===' ') next(); if(e.key==='ArrowLeft') prev(); });
 
     function initCharts() {
-        // ... chart observasi dan lainnya tetap ...
+        // Observasi kategori (sudah baik dari sebelumnya)
+        new Chart(document.getElementById('obsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sangat Baik', 'Baik', 'Cukup', 'Kurang'],
+                datasets: [
+                    { label: 'Eksperimen', data: [27.27, 36.36, 31.82, 4.55], backgroundColor: '#4caf50' },
+                    { label: 'Kontrol', data: [31.82, 27.27, 9.09, 31.82], backgroundColor: '#2196f3' }
+                ]
+            },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50, title:{display:true,text:'Persentase (%)'} }}}
+        });
 
-        // Chart baru: Pretest, Posttest, N-Gain berpasangan
+        // Chart berpasangan Pretest-Posttest-N-Gain (progres jelas)
         new Chart(document.getElementById('gainPairedChart'), {
             type: 'bar',
             data: {
@@ -99,14 +205,14 @@
                     {
                         label: 'Eksperimen',
                         data: [61, 80.25, 0.70],
-                        backgroundColor: 'rgba(76,175,80,0.7)',
+                        backgroundColor: 'rgba(76,175,80,0.8)',
                         borderColor: '#4caf50',
                         borderWidth: 2
                     },
                     {
                         label: 'Kontrol',
                         data: [59.5, 76.70, 0.62],
-                        backgroundColor: 'rgba(33,150,243,0.7)',
+                        backgroundColor: 'rgba(33,150,243,0.8)',
                         borderColor: '#2196f3',
                         borderWidth: 2
                     }
@@ -119,10 +225,23 @@
                     y: { beginAtZero: true, max: 100, title: { display: true, text: 'Nilai / N-Gain' } }
                 },
                 plugins: {
-                    legend: { position: 'top' },
-                    title: { display: true, text: 'Perbandingan Pretest – Posttest – N-Gain (Eksperimen vs Kontrol)', color: '#fff' }
+                    legend: { position: 'top', labels: { color: '#e3f2fd' } },
+                    title: { display: true, text: 'Progres Pretest → Posttest → N-Gain (Eksperimen vs Kontrol)', color: '#fff' }
                 }
             }
+        });
+
+        // Uji Prasyarat & Uji-t (simbolis, tetap dari sebelumnya)
+        new Chart(document.getElementById('prasyaratChart'), {
+            type: 'bar',
+            data: { labels: ['Normalitas', 'Homogenitas', 'Linearitas'], datasets: [{ data: [0.2, 0.543, 0.2], backgroundColor: '#64b5f6', label: 'Sig. Value' }] },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:0.6 }}, plugins:{ title:{display:true,text:'Semua Sig. > 0.05 ✓', color:'#fff'}}}
+        });
+
+        new Chart(document.getElementById('tChart'), {
+            type: 'bar',
+            data: { labels: ['Independent t-Test'], datasets: [{ data: [2.846], backgroundColor: '#4caf50', label: 't-hitung (abs)' }] },
+            options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true }}, plugins:{ title:{display:true,text:'Sig. = 0.007 < 0.05 → Signifikan', color:'#fff'}}}
         });
     }
     window.onload = () => { show(0); initCharts(); };
