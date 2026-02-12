@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Presentasi Hasil Penelitian - Benyamin Batau 2026</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <style>
@@ -15,248 +15,1000 @@
       min-height:100vh;
       background: linear-gradient(135deg, #0a1929, #1a237e, #283593);
       color: #e3f2fd;
+      overflow-x: hidden;
     }
     .container { display:flex; min-height:100vh; }
     .sidebar {
-      width:300px;
-      background:rgba(13,27,42,0.92);
-      padding:30px 20px;
-      border-right:1px solid rgba(100,181,246,0.25);
+      width:320px;
+      background:rgba(13,27,42,0.95);
+      padding:35px 25px;
+      border-right:2px solid rgba(100,181,246,0.3);
       flex-shrink:0;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.4);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(100,181,246,0.3);
+    }
+    .logo h3 {
+      font-size: 1.8rem;
+      color: #64b5f6;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .logo p {
+      color: #90caf9;
+      font-size: 1rem;
+    }
+    .sidebar-content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      color: #b3e5fc;
+    }
+    .sidebar-content p strong {
+      color: #64b5f6;
+      font-weight: 600;
+    }
+    .demo-link {
+      display: block;
+      margin: 35px auto 0;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #4caf50, #66bb6a);
+      color: white;
+      text-align: center;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(76,175,80,0.4);
+    }
+    .demo-link:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px rgba(76,175,80,0.6);
     }
     .slide-container {
       flex:1;
-      padding:40px 50px;
+      padding:45px 55px;
       display:flex;
       align-items:center;
       justify-content:center;
+      position: relative;
     }
-    .slide { width:100%; max-width:1380px; display:none; }
+    .slide { 
+      width:100%; 
+      max-width:1400px; 
+      display:none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
     .slide.active { display:block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    h2 { font-size:2.5rem; color:#64b5f6; margin-bottom:1.2rem; text-align:center; }
-    h3 { font-size:1.9rem; color:#90caf9; margin:1.6rem 0 1rem; text-align:center; }
-    p, li { font-size:1.18rem; line-height:1.65; margin-bottom:1rem; }
+    h2 { 
+      font-size: 2.8rem; 
+      color: #64b5f6; 
+      margin-bottom: 1.5rem; 
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    h3 { 
+      font-size: 2rem; 
+      color: #90caf9; 
+      margin: 1.8rem 0 1.2rem;
+      font-weight: 600;
+    }
+    p, li { 
+      font-size: 1.2rem; 
+      line-height: 1.75; 
+      margin-bottom: 1.1rem;
+      color: #e3f2fd;
+    }
 
     .highlight {
-      background:rgba(33,150,243,0.18);
-      padding:20px;
-      border-radius:12px;
-      border-left:6px solid #2196f3;
-      margin:24px 0;
+      background: linear-gradient(135deg, rgba(33,150,243,0.15), rgba(33,150,243,0.25));
+      padding: 25px 30px;
+      border-radius: 16px;
+      border-left: 8px solid #2196f3;
+      margin: 28px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
     }
 
     .chart-container {
-      height:440px;
-      background:rgba(13,27,42,0.65);
-      padding:16px;
-      border-radius:12px;
-      margin:28px 0;
+      height: 480px;
+      background: rgba(13,27,42,0.7);
+      padding: 20px;
+      border-radius: 16px;
+      margin: 32px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      border: 1px solid rgba(100,181,246,0.2);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(33,150,243,0.2), rgba(33,150,243,0.1));
+      padding: 25px;
+      border-radius: 14px;
+      text-align: center;
+      border: 2px solid rgba(100,181,246,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(33,150,243,0.4);
+      border-color: #64b5f6;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #4caf50;
+      margin: 10px 0;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: #90caf9;
+      font-weight: 500;
+    }
+
+    .comparison-box {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      gap: 20px;
+    }
+
+    .comparison-item {
+      flex: 1;
+      background: rgba(13,27,42,0.6);
+      padding: 25px;
+      border-radius: 14px;
+      text-align: center;
+      border: 2px solid rgba(100,181,246,0.3);
+    }
+
+    .comparison-item.eksperimen {
+      border-color: #4caf50;
+    }
+
+    .comparison-item.kontrol {
+      border-color: #2196f3;
     }
 
     .nav {
-      position:fixed;
-      bottom:24px;
-      left:24px;
-      display:flex;
-      gap:18px;
-      z-index:999;
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      gap: 20px;
+      z-index: 999;
     }
     .nav button {
-      padding:14px 30px;
-      font-size:1.15rem;
-      background:linear-gradient(90deg, #2196f3, #64b5f6);
-      color:white;
-      border:none;
-      border-radius:12px;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      box-shadow:0 5px 15px rgba(0,0,0,0.35);
+      padding: 16px 35px;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, #2196f3, #64b5f6);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(33,150,243,0.4);
+      font-weight: 600;
     }
     .nav button:hover {
-      transform:translateY(-3px) scale(1.05);
-      box-shadow:0 8px 20px rgba(33,150,243,0.5);
-      opacity:0.95;
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(33,150,243,0.6);
     }
-    .nav button:active { transform:translateY(1px); }
+    .nav button:active { 
+      transform: translateY(1px); 
+    }
 
-    @media (max-width:1100px) {
+    .slide-counter {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: rgba(13,27,42,0.9);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      color: #64b5f6;
+      border: 2px solid rgba(100,181,246,0.3);
+      z-index: 999;
+      font-weight: 600;
+    }
+
+    ol {
+      padding-left: 40px;
+      line-height: 2.2;
+    }
+
+    ol li {
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: rgba(13,27,42,0.6);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 16px;
+      text-align: center;
+      border: 1px solid rgba(100,181,246,0.3);
+    }
+
+    th {
+      background: rgba(33,150,243,0.3);
+      color: #64b5f6;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    td {
+      font-size: 1.1rem;
+    }
+
+    .conclusion-box {
+      background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(76,175,80,0.1));
+      padding: 35px;
+      border-radius: 16px;
+      border-left: 8px solid #4caf50;
+      margin: 30px 0;
+      box-shadow: 0 6px 20px rgba(76,175,80,0.3);
+    }
+
+    .conclusion-box p {
+      font-size: 1.25rem;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width:1200px) {
       .container { flex-direction:column; }
-      .sidebar { width:100%; border-right:none; border-bottom:1px solid rgba(100,181,246,0.25); }
-      .slide-container { padding:30px 20px; }
-      .nav { left:50%; transform:translateX(-50%); bottom:16px; }
+      .sidebar { 
+        width:100%; 
+        border-right:none; 
+        border-bottom: 2px solid rgba(100,181,246,0.3); 
+      }
+      .slide-container { padding:35px 25px; }
+      .nav { 
+        left: 50%; 
+        transform: translateX(-50%); 
+        bottom: 20px; 
+      }
+      h2 { font-size: 2.2rem; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<div class="slide-counter" id="slideCounter">Slide 1 / 16</div>
+
 <div class="container">
   <div class="sidebar">
-    <h3 style="color:#64b5f6; text-align:center;">Benyamin Batau</h3>
-    <p style="text-align:center;">NIM 240020301078</p>
-    <p style="text-align:center; margin-top:24px;">Pembimbing:</p>
-    <p>I. Prof. Dr. Darmawang, M.Kes</p>
-    <p>II. Prof. Ir. H. Muh. Yahya, M.Kes., M.Eng., IPU., ASEAN Eng.</p>
+    <div class="logo">
+      <h3>Benyamin Batau</h3>
+      <p>NIM 240020301078</p>
+    </div>
+    
+    <div class="sidebar-content">
+      <p style="margin-top:20px; color:#64b5f6; font-weight:600;">Pembimbing:</p>
+      <p><strong>I.</strong> Prof. Dr. Darmawang, M.Kes</p>
+      <p><strong>II.</strong> Prof. Ir. H. Muh. Yahya, M.Kes., M.Eng., IPU., ASEAN Eng.</p>
+      
+      <p style="margin-top:30px; color:#64b5f6; font-weight:600;">Program Studi:</p>
+      <p>Pendidikan Teknologi Kejuruan<br>Pascasarjana<br>Universitas Negeri Makassar</p>
+      
+      <p style="margin-top:30px; color:#64b5f6; font-weight:600;">Lokasi Penelitian:</p>
+      <p>SMK Negeri 1 Sumarorong<br>Kabupaten Mamasa<br>Sulawesi Barat</p>
+    </div>
     
     <a href="https://benyaminbatau.github.io/BENYAMIN-BATAU-APP-SPARKPLUG-DIAGNOSIS/"
        target="_blank"
-       style="display:block; margin:32px auto 0; padding:16px; background:#4caf50; color:white; text-align:center; border-radius:12px; text-decoration:none; font-weight:600; max-width:240px;">
-       🚀 Demo Aplikasi Deteksi Busi
+       class="demo-link">
+       🚀 Demo Aplikasi Color Grab
     </a>
   </div>
 
   <div class="slide-container">
 
+    <!-- Slide 1: Judul -->
     <div class="slide active">
-      <h2>Abstrak</h2>
-      <div class="highlight" style="font-size:1.12rem; line-height:1.7;">
-        <p><strong>BENYAMIN BATAU, 2026:</strong> “Penerapan Metode Deteksi Insulator Busi Menggunakan Aplikasi Color Grab Berbantuan Analisis Chat GPT dalam Praktik Pemeliharaan Mesin”. Tesis. Program Studi Pendidikan Teknologi Kejuruan. Pascasarjana. Universitas Negeri Makassar. Pembimbing I: Prof. Dr. Darmawang, M.Kes. Pembimbing II: Prof. Dr. Ir. Muh. Yahya, M.Kes., M.Eng., IPU., ASEAN.Eng.</p>
-        <p><strong>Kata Kunci:</strong> Aplikasi Color Grab, ChatGPT, Diagnosis Kondisi Mesin, Hasil Belajar, Pendidikan Kejuruan, Teknik Otomotif</p>
-        <p>Penelitian ini dilatarbelakangi oleh rendahnya akurasi dan tingginya subjektivitas siswa SMK dalam mendiagnosis kondisi mesin berdasarkan warna center insulator busi. Pengamatan visual secara manual selama ini menyebabkan perbedaan interpretasi yang menghambat pencapaian kompetensi siswa pada materi pemeliharaan mesin. Sebagai solusi, penelitian ini menguji efektivitas integrasi aplikasi Color Grab dan ChatGPT sebagai media pembelajaran berbasis digital. Melalui metode quasi eksperimen dengan desain nonequivalent control group, penelitian ini membandingkan hasil belajar antara kelas eksperimen yang menggunakan teknologi tersebut dengan kelas kontrol yang menggunakan metode konvensional. Data yang dikumpulkan melalui instrumen tes dianalisis menggunakan perhitungan N-Gain dan uji hipotesis (uji t). Hasil penelitian menunjukkan adanya peningkatan hasil belajar yang signifikan pada kelas eksperimen. Penggunaan aplikasi Color Grab terbukti mampu mengonversi data visual menjadi data digital yang objektif, sementara ChatGPT berperan efektif dalam memberikan analisis diagnostik yang akurat. Disimpulkan bahwa pemanfaatan kedua teknologi ini secara signifikan mampu meningkatkan objektivitas diagnosis serta hasil belajar siswa pada program keahlian teknik otomotif.</p>
+      <h2 style="font-size:3.2rem; margin-bottom:40px;">Penerapan Metode Deteksi Insulator Busi</h2>
+      <h3 style="text-align:center; font-size:2.2rem; color:#90caf9; margin-bottom:50px;">
+        Menggunakan Aplikasi Color Grab<br>Berbantuan Analisis ChatGPT<br>dalam Praktik Pemeliharaan Mesin
+      </h3>
+      
+      <div class="stats-grid" style="margin-top:60px;">
+        <div class="stat-card">
+          <div class="stat-label">Lokasi Penelitian</div>
+          <div class="stat-value" style="font-size:1.8rem;">SMK N 1</div>
+          <div class="stat-label">Sumarorong, Mamasa</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Sampel Penelitian</div>
+          <div class="stat-value">44</div>
+          <div class="stat-label">Siswa (2 Kelas)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Metode</div>
+          <div class="stat-value" style="font-size:1.8rem;">Quasi</div>
+          <div class="stat-label">Experimental Design</div>
+        </div>
       </div>
     </div>
 
+    <!-- Slide 2: Abstrak -->
     <div class="slide">
-      <h2>Pentingnya Penelitian Ini</h2>
-      <div class="highlight">
-        <p>• Proses analisis warna insulator busi yang dilakukan secara konvensional (manual) cenderung bersifat subjektif, sehingga menyebabkan tingkat akurasi diagnosis terhadap kondisi pemeliharaan mesin menjadi rendah</p>
-        <p>• Terdapat indikasi terjadinya kesenjangan kompetensi (skill gap) antara kualifikasi lulusan Sekolah Menengah Kejuruan (SMK) dengan standar kebutuhan industri otomotif yang terus berkembang secara dinamis.</p>
-        <p>• Solusi: Integrasi aplikasi Color Grab untuk ekstraksi data objektif berbasis nilai RGB/HEX yang dikolaborasikan dengan ChatGPT sebagai instrumen analisis kontekstual, mampu menciptakan ekosistem pembelajaran interaktif yang relevan dengan tuntutan revolusi Industri 4.0.</p>
-        <p>• Tujuan: Penelitian ini bertujuan untuk mengoptimalkan pemahaman konseptual, mengasah keterampilan teknis, serta meningkatkan hasil belajar siswa pada kompetensi keahlian TSM melalui pendekatan diagnosis digital yang presisi.</p>
+      <h2>Abstrak</h2>
+      <div class="highlight" style="font-size:1.15rem; line-height:1.8;">
+        <p><strong>Kata Kunci:</strong> Aplikasi Color Grab, ChatGPT, Diagnosis Kondisi Mesin, Hasil Belajar, Pendidikan Kejuruan, Teknik Otomotif</p>
+        
+        <p style="margin-top:20px;">Penelitian ini dilatarbelakangi oleh <strong>rendahnya akurasi dan tingginya subjektivitas</strong> siswa SMK dalam mendiagnosis kondisi mesin berdasarkan warna center insulator busi. Pengamatan visual secara manual menyebabkan perbedaan interpretasi yang menghambat pencapaian kompetensi siswa.</p>
+        
+        <p>Sebagai solusi, penelitian ini menguji efektivitas integrasi <strong>aplikasi Color Grab dan ChatGPT</strong> sebagai media pembelajaran berbasis digital melalui metode <strong>quasi eksperimen dengan desain nonequivalent control group</strong>.</p>
+        
+        <p><strong>Hasil penelitian menunjukkan:</strong> Penggunaan Color Grab terbukti mampu mengonversi data visual menjadi data digital yang objektif, sementara ChatGPT berperan efektif dalam memberikan analisis diagnostik yang akurat. Pemanfaatan kedua teknologi ini secara signifikan mampu meningkatkan objektivitas diagnosis serta hasil belajar siswa pada program keahlian teknik otomotif.</p>
       </div>
     </div>
 
+    <!-- Slide 3: Latar Belakang -->
+    <div class="slide">
+      <h2>Latar Belakang & Pentingnya Penelitian</h2>
+      <div class="highlight">
+        <h3 style="color:#ff5252;">🔴 Permasalahan:</h3>
+        <p>• Analisis warna insulator busi secara manual bersifat <strong>subjektif</strong></p>
+        <p>• Tingkat akurasi diagnosis kondisi mesin <strong>rendah</strong></p>
+        <p>• <strong>Kesenjangan kompetensi</strong> (skill gap) lulusan SMK dengan kebutuhan industri otomotif</p>
+        
+        <h3 style="color:#4caf50; margin-top:30px;">✅ Solusi Penelitian:</h3>
+        <p>• Integrasi <strong>aplikasi Color Grab</strong> untuk ekstraksi data objektif berbasis nilai RGB/HEX</p>
+        <p>• Kolaborasi dengan <strong>ChatGPT</strong> sebagai instrumen analisis kontekstual</p>
+        <p>• Menciptakan ekosistem pembelajaran interaktif relevan dengan <strong>Industri 4.0</strong></p>
+        
+        <h3 style="color:#2196f3; margin-top:30px;">🎯 Tujuan:</h3>
+        <p>Mengoptimalkan pemahaman konseptual, mengasah keterampilan teknis, serta meningkatkan hasil belajar siswa TSM melalui pendekatan diagnosis digital yang presisi</p>
+      </div>
+    </div>
+
+    <!-- Slide 4: Rumusan Masalah -->
     <div class="slide">
       <h2>Rumusan Masalah</h2>
       <div class="highlight">
-        <ol style="padding-left:32px; line-height:2;">
-          <li>Bagaimana pemanfaatan aplikasi Color Grab berbantuan analisis ChatGPT dalam mengakurasi dan menginterpretasikan data warna insulator busi untuk mendukung peningkatan pemahaman siswa terhadap kondisi mesin?</li>
-          <li>Sejauh mana penerapan aplikasi Color Grab berbantuan analisis ChatGPT dapat meningkatkan keterampilan siswa pada pembelajaran pemeliharaan mesin Kompetensi Keahlian TKR dan TSM?</li>
-          <li>Apakah ada perbedaan hasil belajar antara kelas eksperimen yang menggunakan aplikasi Color Grab berbantuan analisis ChatGPT dengan kelas kontrol yang melaksanakan pembelajaran konvensional?</li>
+        <ol>
+          <li><strong>Bagaimana</strong> pemanfaatan aplikasi Color Grab berbantuan analisis ChatGPT dalam mengakurasi dan menginterpretasikan data warna insulator busi untuk mendukung peningkatan pemahaman siswa terhadap kondisi mesin?</li>
+          
+          <li><strong>Sejauh mana</strong> penerapan aplikasi Color Grab berbantuan analisis ChatGPT dapat meningkatkan keterampilan siswa pada pembelajaran pemeliharaan mesin Kompetensi Keahlian TKR dan TSM?</li>
+          
+          <li><strong>Apakah ada perbedaan</strong> hasil belajar antara kelas eksperimen yang menggunakan aplikasi Color Grab berbantuan analisis ChatGPT dengan kelas kontrol yang melaksanakan pembelajaran konvensional?</li>
         </ol>
       </div>
     </div>
 
+    <!-- Slide 5: Validitas & Reliabilitas -->
     <div class="slide">
       <h2>Uji Validitas & Reliabilitas Instrumen</h2>
-      <div class="highlight">
-        <p><strong>Validitas:</strong> 24 butir soal diuji pada 25 responden (N=25, df=23, r-tabel 0,396 α=0,05).</p>
-        <p>r-hitung: 0,403 – 0,778 → <strong>semua 24 butir valid</strong>.</p>
-        <p><strong>Reliabilitas:</strong> Cronbach's Alpha = <strong>0,914</strong> (BAIK, ≥0,80).</p>
-        <p><strong>Kesimpulan:</strong> Instrumen valid & reliabel untuk mengukur hasil belajar diagnosis mesin.</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Jumlah Butir Soal</div>
+          <div class="stat-value">24</div>
+          <div class="stat-label">Semua Valid</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Jumlah Responden</div>
+          <div class="stat-value">25</div>
+          <div class="stat-label">N = 25, df = 23</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">r-tabel (α=0,05)</div>
+          <div class="stat-value">0,396</div>
+          <div class="stat-label">Kriteria Validitas</div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:30px;">
+        <h3>📊 Hasil Uji Validitas:</h3>
+        <p>• Range r-hitung: <strong>0,403 – 0,778</strong></p>
+        <p>• Semua nilai r-hitung > r-tabel (0,396)</p>
+        <p>• <strong style="color:#4caf50;">✓ Semua 24 butir soal VALID</strong></p>
+        
+        <h3 style="margin-top:25px;">📊 Hasil Uji Reliabilitas:</h3>
+        <p>• Cronbach's Alpha = <strong style="color:#4caf50; font-size:1.4rem;">0,914</strong></p>
+        <p>• Kategori: <strong>SANGAT RELIABEL</strong> (≥ 0,80)</p>
+        
+        <p style="margin-top:25px; font-size:1.3rem; color:#4caf50; text-align:center;">
+          <strong>✓ Instrumen VALID & RELIABEL untuk mengukur hasil belajar diagnosis mesin</strong>
+        </p>
       </div>
     </div>
 
+    <!-- Slide 6: Hasil Observasi -->
     <div class="slide">
-      <h2>Hasil Observasi Kemampuan Siswa</h2>
+      <h2>Hasil Observasi Aktivitas Siswa</h2>
       <div class="chart-container"><canvas id="obsChart"></canvas></div>
-      <div style="display:flex; justify-content:space-around; margin:24px 0; font-size:1.12rem;">
-        <div style="text-align:center;">
-          <p style="color:#4caf50; font-weight:700;">Eksperimen (n=22)</p>
-          <p>Sangat Baik: 27,27% (6)</p>
-          <p>Baik: 36,36% (8)</p>
-          <p>Cukup: 31,82% (7)</p>
-          <p>Kurang: 4,55% (1)</p>
+      
+      <div class="comparison-box">
+        <div class="comparison-item eksperimen">
+          <p style="color:#4caf50; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Eksperimen (n=22)</p>
+          <p>Sangat Baik (21-23): <strong>27,27%</strong> (6 siswa)</p>
+          <p>Baik (18-20): <strong>36,36%</strong> (8 siswa)</p>
+          <p>Cukup (15-17): <strong>31,82%</strong> (7 siswa)</p>
+          <p>Kurang (11-14): <strong>4,55%</strong> (1 siswa)</p>
+          <p style="margin-top:15px; color:#4caf50;">Rata-rata: <strong>19,32</strong> | SD: <strong>3,23</strong></p>
         </div>
-        <div style="text-align:center;">
-          <p style="color:#2196f3; font-weight:700;">Kontrol (n=22)</p>
-          <p>Sangat Baik: 31,82% (7)</p>
-          <p>Baik: 27,27% (6)</p>
-          <p>Cukup: 9,09% (2)</p>
-          <p>Kurang: 31,82% (7)</p>
-        </div>
-      </div>
-      <p style="text-align:center; color:#64b5f6;">Eksperimen lebih konsisten di kategori Baik & Cukup.</p>
-    </div>
-
-    <div class="slide">
-      <h2>Kategori Hasil Pretest</h2>
-      <div class="chart-container"><canvas id="pretestKategoriChart"></canvas></div>
-      <div style="display:flex; justify-content:space-around; margin-top:20px; font-size:1.1rem;">
-        <div style="text-align:center;">
-          <p style="color:#4caf50; font-weight:700;">Eksperimen</p>
-          <p>Sangat Baik: 0% | Baik: 0% | Cukup: 0% | Kurang: 100%</p>
-        </div>
-        <div style="text-align:center;">
-          <p style="color:#2196f3; font-weight:700;">Kontrol</p>
-          <p>Sangat Baik: 0% | Baik: 00% | Cukup: 00% | Kurang: 100%</p>
+        <div class="comparison-item kontrol">
+          <p style="color:#2196f3; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Kontrol (n=22)</p>
+          <p>Sangat Baik (21-23): <strong>31,82%</strong> (7 siswa)</p>
+          <p>Baik (18-20): <strong>27,27%</strong> (6 siswa)</p>
+          <p>Cukup (15-17): <strong>9,09%</strong> (2 siswa)</p>
+          <p>Kurang (11-14): <strong>31,82%</strong> (7 siswa)</p>
+          <p style="margin-top:15px; color:#2196f3;">Rata-rata: <strong>17,36</strong> | SD: <strong>4,30</strong></p>
         </div>
       </div>
-      <p style="text-align:center; margin-top:15px; color:#64b5f6;">Baseline pretest: kedua kelas dominan Kurang.</p>
-    </div>
-
-    <div class="slide">
-      <h2>Kategori Hasil Posttest</h2>
-      <div class="chart-container"><canvas id="posttestKategoriChart"></canvas></div>
-      <div style="display:flex; justify-content:space-around; margin-top:20px; font-size:1.1rem;">
-        <div style="text-align:center;">
-          <p style="color:#4caf50; font-weight:700;">Eksperimen</p>
-          <p>Sangat Baik: 18,18% | Baik: 50% | Cukup: 27,27% | Kurang: 4,55%</p>
-        </div>
-        <div style="text-align:center;">
-          <p style="color:#2196f3; font-weight:700;">Kontrol</p>
-          <p>Sangat Baik: 9,09% | Baik: 22,73% | Cukup: 54,55% | Kurang: 13,64%</p>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:15px; color:#64b5f6;">Posttest eksperimen dominan Sangat Baik & Baik.</p>
-    </div>
-        <div class="slide">
-      <h2>Kategori N-Gain (Efektivitas Peningkatan)</h2>
-      <div class="chart-container"><canvas id="ngainKategoriChart"></canvas></div>
-      <div style="display:flex; justify-content:space-around; margin-top:20px; font-size:1.1rem;">
-        <div style="text-align:center;">
-          <p style="color:#4caf50; font-weight:700;">Eksperimen</p>
-          <p>Tinggi: 68,18% | Sedang: 31,82% | Rendah: 0% </p>
-        </div>
-        <div style="text-align:center;">
-          <p style="color:#2196f3; font-weight:700;">Kontrol</p>
-          <p>Tinggi: 31,82% | Sedang: 68,18% | Rendah: 0%</p>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:15px; color:#64b5f6;">N-Gain kelas eksperimen lebih banyak kategori tinggi.</p>
-    </div>
-
-      </div>
-      <p style="text-align:center; margin-top:20px; font-size:1.3rem; color:#64b5f6;">
-        Dari baseline pretest hampir sama, kelas eksperimen naik lebih tinggi dari kelas kontrol.
+      
+      <p style="text-align:center; margin-top:25px; font-size:1.25rem; color:#64b5f6;">
+        <strong>Kelas eksperimen lebih konsisten di kategori Baik & Cukup, dengan variabilitas lebih rendah</strong>
       </p>
     </div>
 
+    <!-- Slide 7: Data Pretest -->
+    <div class="slide">
+      <h2>Hasil Pretest (Kemampuan Awal)</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card eksperimen">
+          <div class="stat-label">Kelas Eksperimen</div>
+          <div class="stat-value">37,12</div>
+          <div class="stat-label">Rata-rata Pretest</div>
+        </div>
+        <div class="stat-card kontrol">
+          <div class="stat-label">Kelas Kontrol</div>
+          <div class="stat-value">39,20</div>
+          <div class="stat-label">Rata-rata Pretest</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Statistik</th>
+            <th>Kelas Eksperimen</th>
+            <th>Kelas Kontrol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jumlah Siswa</strong></td>
+            <td>22</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td><strong>Total Nilai</strong></td>
+            <td>816,67</td>
+            <td>862,49</td>
+          </tr>
+          <tr>
+            <td><strong>Nilai Maksimal</strong></td>
+            <td>50,00</td>
+            <td>58,33</td>
+          </tr>
+          <tr>
+            <td><strong>Nilai Minimal</strong></td>
+            <td>25,00</td>
+            <td>20,83</td>
+          </tr>
+          <tr>
+            <td><strong>Rata-rata</strong></td>
+            <td style="color:#4caf50; font-weight:700;">37,12</td>
+            <td style="color:#2196f3; font-weight:700;">39,20</td>
+          </tr>
+          <tr>
+            <td><strong>Simpangan Baku</strong></td>
+            <td>6,67</td>
+            <td>9,85</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-container"><canvas id="pretestChart"></canvas></div>
+
+      <p style="text-align:center; margin-top:20px; font-size:1.25rem; color:#64b5f6;">
+        <strong>Kedua kelas memiliki kemampuan awal yang relatif setara (selisih 2,08 poin)</strong>
+      </p>
+    </div>
+
+    <!-- Slide 8: Kategori Pretest -->
+    <div class="slide">
+      <h2>Distribusi Kategori Pretest</h2>
+      <div class="chart-container"><canvas id="pretestKategoriChart"></canvas></div>
+      
+      <div class="highlight">
+        <h3 style="text-align:center; color:#ff9800;">Kondisi Awal Kemampuan Siswa</h3>
+        <table style="margin-top:20px;">
+          <thead>
+            <tr>
+              <th>Kategori</th>
+              <th>Kelas Eksperimen</th>
+              <th>Kelas Kontrol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sangat Baik (90-100)</td>
+              <td>0 siswa (0%)</td>
+              <td>0 siswa (0%)</td>
+            </tr>
+            <tr>
+              <td>Baik (80-89)</td>
+              <td>0 siswa (0%)</td>
+              <td>0 siswa (0%)</td>
+            </tr>
+            <tr>
+              <td>Cukup (70-79)</td>
+              <td>0 siswa (0%)</td>
+              <td>0 siswa (0%)</td>
+            </tr>
+            <tr>
+              <td><strong>Kurang (&lt;70)</strong></td>
+              <td style="color:#ff5252; font-weight:700;">22 siswa (100%)</td>
+              <td style="color:#ff5252; font-weight:700;">22 siswa (100%)</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <p style="text-align:center; margin-top:25px; font-size:1.3rem; color:#ff9800;">
+          <strong>100% siswa dari kedua kelas berada pada kategori KURANG</strong><br>
+          <span style="font-size:1.1rem;">Menunjukkan kesetaraan kemampuan awal yang sangat rendah</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 9: Data Posttest -->
+    <div class="slide">
+      <h2>Hasil Posttest (Hasil Akhir Pembelajaran)</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card eksperimen">
+          <div class="stat-label">Kelas Eksperimen</div>
+          <div class="stat-value">83,14</div>
+          <div class="stat-label">Rata-rata Posttest</div>
+        </div>
+        <div class="stat-card kontrol">
+          <div class="stat-label">Kelas Kontrol</div>
+          <div class="stat-value">76,70</div>
+          <div class="stat-label">Rata-rata Posttest</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Statistik</th>
+            <th>Kelas Eksperimen</th>
+            <th>Kelas Kontrol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Jumlah Siswa</strong></td>
+            <td>22</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td><strong>Total Nilai</strong></td>
+            <td>1.829,17</td>
+            <td>1.687,50</td>
+          </tr>
+          <tr>
+            <td><strong>Nilai Maksimal</strong></td>
+            <td style="color:#4caf50; font-weight:700;">95,83</td>
+            <td>91,67</td>
+          </tr>
+          <tr>
+            <td><strong>Nilai Minimal</strong></td>
+            <td style="color:#4caf50; font-weight:700;">66,67</td>
+            <td>62,50</td>
+          </tr>
+          <tr>
+            <td><strong>Rata-rata</strong></td>
+            <td style="color:#4caf50; font-weight:700; font-size:1.3rem;">83,14</td>
+            <td style="color:#2196f3; font-weight:700;">76,70</td>
+          </tr>
+          <tr>
+            <td><strong>Simpangan Baku</strong></td>
+            <td style="color:#4caf50; font-weight:700;">6,86</td>
+            <td>8,10</td>
+          </tr>
+          <tr>
+            <td><strong>Selisih Rata-rata</strong></td>
+            <td colspan="2" style="color:#ffc107; font-weight:700; font-size:1.2rem;">6,44 poin</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-container"><canvas id="posttestChart"></canvas></div>
+
+      <p style="text-align:center; margin-top:20px; font-size:1.3rem; color:#4caf50;">
+        <strong>Kelas eksperimen menunjukkan hasil yang lebih tinggi dan lebih konsisten (SD lebih rendah)</strong>
+      </p>
+    </div>
+
+    <!-- Slide 10: Kategori Posttest -->
+    <div class="slide">
+      <h2>Distribusi Kategori Posttest</h2>
+      <div class="chart-container"><canvas id="posttestKategoriChart"></canvas></div>
+      
+      <div class="comparison-box" style="margin-top:30px;">
+        <div class="comparison-item eksperimen">
+          <p style="color:#4caf50; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Eksperimen</p>
+          <p>Sangat Baik (90-100): <strong>18,18%</strong> (4 siswa)</p>
+          <p>Baik (80-89): <strong style="color:#4caf50;">50,00%</strong> (11 siswa)</p>
+          <p>Cukup (70-79): <strong>27,27%</strong> (6 siswa)</p>
+          <p>Kurang (&lt;70): <strong>4,55%</strong> (1 siswa)</p>
+          <p style="margin-top:15px; border-top:2px solid #4caf50; padding-top:10px;">
+            <strong style="color:#4caf50; font-size:1.2rem;">Kategori Baik+ : 68,18%</strong>
+          </p>
+        </div>
+        <div class="comparison-item kontrol">
+          <p style="color:#2196f3; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Kontrol</p>
+          <p>Sangat Baik (90-100): <strong>9,09%</strong> (2 siswa)</p>
+          <p>Baik (80-89): <strong>22,73%</strong> (5 siswa)</p>
+          <p>Cukup (70-79): <strong style="color:#ff9800;">54,55%</strong> (12 siswa)</p>
+          <p>Kurang (&lt;70): <strong>13,64%</strong> (3 siswa)</p>
+          <p style="margin-top:15px; border-top:2px solid #2196f3; padding-top:10px;">
+            <strong style="color:#2196f3; font-size:1.2rem;">Kategori Baik+ : 31,82%</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:30px;">
+        <p style="text-align:center; font-size:1.3rem; color:#4caf50;">
+          <strong>Kelas eksperimen memiliki 2x lebih banyak siswa pada kategori Baik atau lebih tinggi<br>
+          (68,18% vs 31,82%)</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 11: Data N-Gain -->
+    <div class="slide">
+      <h2>Nilai N-Gain (Efektivitas Peningkatan)</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card eksperimen">
+          <div class="stat-label">Kelas Eksperimen</div>
+          <div class="stat-value">0,74</div>
+          <div class="stat-label" style="color:#4caf50; font-weight:700;">Kategori TINGGI</div>
+        </div>
+        <div class="stat-card kontrol">
+          <div class="stat-label">Kelas Kontrol</div>
+          <div class="stat-value">0,61</div>
+          <div class="stat-label" style="color:#ff9800; font-weight:700;">Kategori SEDANG</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Statistik N-Gain</th>
+            <th>Kelas Eksperimen</th>
+            <th>Kelas Kontrol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Total N-Gain</strong></td>
+            <td>16,18</td>
+            <td>13,51</td>
+          </tr>
+          <tr>
+            <td><strong>N-Gain Maksimal</strong></td>
+            <td style="color:#4caf50; font-weight:700;">0,92</td>
+            <td>0,88</td>
+          </tr>
+          <tr>
+            <td><strong>N-Gain Minimal</strong></td>
+            <td style="color:#4caf50; font-weight:700;">0,50</td>
+            <td>0,43</td>
+          </tr>
+          <tr>
+            <td><strong>Rata-rata N-Gain</strong></td>
+            <td style="color:#4caf50; font-weight:700; font-size:1.4rem;">0,74</td>
+            <td style="color:#ff9800; font-weight:700;">0,61</td>
+          </tr>
+          <tr>
+            <td><strong>Simpangan Baku</strong></td>
+            <td style="color:#4caf50; font-weight:700;">0,10</td>
+            <td>0,13</td>
+          </tr>
+          <tr>
+            <td><strong>Kategori</strong></td>
+            <td style="color:#4caf50; font-weight:700;">TINGGI (≥0,7)</td>
+            <td style="color:#ff9800; font-weight:700;">SEDANG (0,3-0,7)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-container"><canvas id="ngainChart"></canvas></div>
+
+      <div class="highlight" style="margin-top:20px;">
+        <p style="font-size:1.2rem;"><strong>Interpretasi N-Gain (Kriteria Hake, 1998):</strong></p>
+        <p>• g ≥ 0,7 : <strong style="color:#4caf50;">Tinggi (High gain)</strong></p>
+        <p>• 0,3 ≤ g &lt; 0,7 : <strong style="color:#ff9800;">Sedang (Medium gain)</strong></p>
+        <p>• g &lt; 0,3 : <strong style="color:#ff5252;">Rendah (Low gain)</strong></p>
+      </div>
+    </div>
+
+    <!-- Slide 12: Kategori N-Gain -->
+    <div class="slide">
+      <h2>Distribusi Kategori N-Gain</h2>
+      <div class="chart-container"><canvas id="ngainKategoriChart"></canvas></div>
+      
+      <div class="comparison-box" style="margin-top:30px;">
+        <div class="comparison-item eksperimen">
+          <p style="color:#4caf50; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Eksperimen</p>
+          <p>Tinggi (g ≥ 0,7): <strong style="color:#4caf50; font-size:1.4rem;">68,18%</strong> (15 siswa)</p>
+          <p>Sedang (0,3-0,7): <strong>31,82%</strong> (7 siswa)</p>
+          <p>Rendah (g &lt; 0,3): <strong>0%</strong> (0 siswa)</p>
+        </div>
+        <div class="comparison-item kontrol">
+          <p style="color:#2196f3; font-weight:700; font-size:1.3rem; margin-bottom:15px;">Kelas Kontrol</p>
+          <p>Tinggi (g ≥ 0,7): <strong>31,82%</strong> (7 siswa)</p>
+          <p>Sedang (0,3-0,7): <strong style="color:#ff9800; font-size:1.4rem;">68,18%</strong> (15 siswa)</p>
+          <p>Rendah (g &lt; 0,3): <strong>0%</strong> (0 siswa)</p>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:30px;">
+        <h3 style="text-align:center; color:#4caf50;">Temuan Penting:</h3>
+        <p style="text-align:center; font-size:1.3rem;">
+          <strong>Kelas eksperimen memiliki proporsi siswa dengan peningkatan TINGGI lebih dari 2x lipat<br>
+          (68,18% vs 31,82%)</strong>
+        </p>
+        <p style="text-align:center; margin-top:15px; font-size:1.2rem;">
+          Tidak ada siswa pada kategori Rendah di kedua kelas,<br>
+          menunjukkan pembelajaran tetap memberikan dampak positif minimal sedang
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 13: Perbandingan Pre-Post-Gain -->
+    <div class="slide">
+      <h2>Perbandingan Progres Pembelajaran</h2>
+      <div class="chart-container"><canvas id="progresChart"></canvas></div>
+      
+      <div class="stats-grid" style="margin-top:30px;">
+        <div class="stat-card">
+          <div class="stat-label">Peningkatan Eksperimen</div>
+          <div class="stat-value" style="color:#4caf50;">+46,02</div>
+          <div class="stat-label">Poin (37,12 → 83,14)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Peningkatan Kontrol</div>
+          <div class="stat-value" style="color:#2196f3;">+37,50</div>
+          <div class="stat-label">Poin (39,20 → 76,70)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Selisih Peningkatan</div>
+          <div class="stat-value" style="color:#ffc107;">+8,52</div>
+          <div class="stat-label">Poin lebih tinggi</div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:30px;">
+        <p style="text-align:center; font-size:1.3rem; color:#4caf50;">
+          <strong>Dari baseline pretest yang hampir sama,<br>
+          kelas eksperimen menunjukkan peningkatan yang lebih besar dan lebih efektif</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 14: Uji Prasyarat -->
     <div class="slide">
       <h2>Hasil Uji Prasyarat Analisis</h2>
-      <div class="chart-container"><canvas id="prasyaratChart"></canvas></div>
-      <div class="highlight" style="margin-top:20px;">
-        <p>Data memenuhi asumsi parametrik:</p>
-        <p>• Normalitas (Shapiro-Wilk): Sig. > 0,05 (kedua kelompok normal)</p>
-        <p>• Homogenitas varians (Levene): Sig. > 0,05</p>
-        <p>• Linearitas hubungan variabel: Sig. Deviation from Linearity > 0,05</p>
-        <p><strong>Kesimpulan:</strong> Layak uji-t independen & paired t-test.</p>
-      </div>
-    </div>
-
-    <div class="slide">
-      <h2>Hasil Uji Independent Sample t-Test</h2>
-      <div class="highlight" style="text-align:center; font-size:1.4rem;">
-        <p style="font-size:2.5rem; color:#4caf50; margin:30px 0;">t-hitung = -2,846 | Sig. (2-tailed) = 0,007 < 0,05</p>
-        <p>H₀ ditolak → Ada perbedaan signifikan hasil belajar</p>
-        <p>Kelas eksperimen lebih tinggi daripada kontrol</p>
-      </div>
-      <div class="chart-container"><canvas id="tChart"></canvas></div>
-      <p style="text-align:center; margin-top:15px;">Menjawab rumusan masalah ke-3: Metode berpengaruh signifikan.</p>
-    </div>
-
-    <div class="slide">
-      <h2>Kesimpulan</h2>
+      
       <div class="highlight">
-        <p>1. Color Grabberbantuan ChatGPT efektif tingkatkan akurasi & objektivitas diagnosis insulator busi.</p>
-        <p>2. Hasil belajar siswa meningkat .</p>
-        <p>3. Ada perbedaan signifikan (uji-t Sig. 0,007 < 0,05) → metode lebih efektif daripada konvensional.</p>
+        <h3 style="color:#4caf50;">✓ Uji Normalitas (Shapiro-Wilk)</h3>
+        <table style="margin:15px 0;">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Kelas Eksperimen</th>
+              <th>Kelas Kontrol</th>
+              <th>Kesimpulan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pretest</td>
+              <td>Sig. 0,442 > 0,05</td>
+              <td>Sig. 0,621 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Normal ✓</td>
+            </tr>
+            <tr>
+              <td>Posttest</td>
+              <td>Sig. 0,527 > 0,05</td>
+              <td>Sig. 0,495 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Normal ✓</td>
+            </tr>
+            <tr>
+              <td>N-Gain</td>
+              <td>Sig. 0,969 > 0,05</td>
+              <td>Sig. 0,427 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Normal ✓</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="color:#4caf50; margin-top:30px;">✓ Uji Homogenitas (Levene's Test)</h3>
+        <table style="margin:15px 0;">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Levene Statistic</th>
+              <th>Signifikansi</th>
+              <th>Kesimpulan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pretest</td>
+              <td>2,623</td>
+              <td>0,113 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Homogen ✓</td>
+            </tr>
+            <tr>
+              <td>Posttest</td>
+              <td>0,813</td>
+              <td>0,372 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Homogen ✓</td>
+            </tr>
+            <tr>
+              <td>N-Gain</td>
+              <td>3,262</td>
+              <td>0,078 > 0,05</td>
+              <td style="color:#4caf50; font-weight:700;">Homogen ✓</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="color:#4caf50; margin-top:30px;">✓ Uji Linearitas</h3>
+        <p>• Posttest vs Pretest: Sig. Linearity = 0,041 < 0,05 (Linear ✓)</p>
+        <p>• N-Gain vs Posttest: Sig. Linearity = 0,000 < 0,05 (Linear ✓, R² = 0,864)</p>
       </div>
-      <h1 style="text-align:center; margin:100px 0 50px; font-size:4rem; color:#64b5f6;">
+
+      <div class="conclusion-box" style="margin-top:30px;">
+        <p style="text-align:center; font-size:1.3rem; color:#4caf50;">
+          <strong>✓ Semua uji prasyarat terpenuhi → Layak untuk uji statistik parametrik</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 15: Uji Hipotesis -->
+    <div class="slide">
+      <h2>Hasil Uji Hipotesis</h2>
+      
+      <div class="highlight">
+        <h3 style="text-align:center; color:#64b5f6;">Independent Sample t-Test (Posttest)</h3>
+        
+        <div class="stats-grid" style="margin:30px 0;">
+          <div class="stat-card">
+            <div class="stat-label">t-hitung</div>
+            <div class="stat-value" style="color:#ff5252;">-2,846</div>
+            <div class="stat-label">df = 42</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Signifikansi (2-tailed)</div>
+            <div class="stat-value" style="color:#4caf50;">0,007</div>
+            <div class="stat-label">< 0,05</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Selisih Rata-rata</div>
+            <div class="stat-value" style="color:#ffc107;">6,44</div>
+            <div class="stat-label">Poin</div>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Kelas</th>
+              <th>N</th>
+              <th>Mean</th>
+              <th>Std. Deviation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eksperimen</td>
+              <td>22</td>
+              <td style="color:#4caf50; font-weight:700;">83,14</td>
+              <td>6,86</td>
+            </tr>
+            <tr>
+              <td>Kontrol</td>
+              <td>22</td>
+              <td style="color:#2196f3; font-weight:700;">76,70</td>
+              <td>8,10</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="conclusion-box" style="margin-top:30px;">
+          <p style="font-size:1.4rem; text-align:center;">
+            <strong style="color:#ff5252;">H₀ DITOLAK</strong> | <strong style="color:#4caf50;">Hₐ DITERIMA</strong>
+          </p>
+          <p style="font-size:1.3rem; text-align:center; margin-top:15px; color:#4caf50;">
+            <strong>Ada perbedaan hasil belajar yang SIGNIFIKAN<br>
+            Kelas eksperimen lebih tinggi daripada kelas kontrol</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="chart-container"><canvas id="hipotesisChart"></canvas></div>
+
+      <p style="text-align:center; margin-top:20px; font-size:1.25rem; color:#64b5f6;">
+        Interval Kepercayaan 95%: [-11,006 hingga -1,873] → Tidak melintasi nol, perbedaan stabil
+      </p>
+    </div>
+
+    <!-- Slide 16: Kesimpulan -->
+    <div class="slide">
+      <h2 style="color:#4caf50;">Kesimpulan Penelitian</h2>
+      
+      <div class="conclusion-box">
+        <h3 style="color:#64b5f6;">🎯 Berdasarkan hasil penelitian dan analisis data:</h3>
+        
+        <p><strong>1. Efektivitas Aplikasi Color Grab & ChatGPT:</strong></p>
+        <p style="padding-left:30px;">• Color Grab efektif mengonversi data visual menjadi data digital objektif (RGB/HEX)</p>
+        <p style="padding-left:30px;">• ChatGPT berperan efektif memberikan analisis diagnostik yang akurat dan kontekstual</p>
+        <p style="padding-left:30px;">• Meningkatkan akurasi dan objektivitas diagnosis kondisi mesin berbasis warna insulator busi</p>
+        
+        <p style="margin-top:20px;"><strong>2. Peningkatan Hasil Belajar Signifikan:</strong></p>
+        <p style="padding-left:30px;">• Kelas eksperimen: Rata-rata posttest <strong style="color:#4caf50;">83,14</strong> (N-Gain: <strong>0,74</strong> - Kategori TINGGI)</p>
+        <p style="padding-left:30px;">• Kelas kontrol: Rata-rata posttest <strong>76,70</strong> (N-Gain: <strong>0,61</strong> - Kategori SEDANG)</p>
+        <p style="padding-left:30px;">• Selisih signifikan: <strong style="color:#ffc107;">6,44 poin</strong> (uji-t: Sig. 0,007 < 0,05)</p>
+        
+        <p style="margin-top:20px;"><strong>3. Perbedaan Hasil Belajar Signifikan Secara Statistik:</strong></p>
+        <p style="padding-left:30px;">• Independent t-Test: t = -2,846, Sig. (2-tailed) = <strong style="color:#4caf50;">0,007 < 0,05</strong></p>
+        <p style="padding-left:30px;">• H₀ ditolak → Ada perbedaan signifikan antara kelas eksperimen dan kontrol</p>
+        <p style="padding-left:30px;">• Pembelajaran berbantuan Color Grab & ChatGPT <strong>lebih efektif</strong> dari pembelajaran konvensional</p>
+        
+        <p style="margin-top:20px;"><strong>4. Distribusi Pencapaian Lebih Baik:</strong></p>
+        <p style="padding-left:30px;">• 68,18% siswa eksperimen mencapai kategori Baik/Sangat Baik vs 31,82% kontrol</p>
+        <p style="padding-left:30px;">• 68,18% siswa eksperimen mencapai N-Gain Tinggi vs 31,82% kontrol</p>
+        <p style="padding-left:30px;">• Peningkatan lebih merata dengan variabilitas lebih rendah</p>
+      </div>
+
+      <h1 style="text-align:center; margin:80px 0 40px; font-size:3.5rem; color:#4caf50;">
         TERIMA KASIH
       </h1>
-      <p style="text-align:center; font-size:2rem;">Benyamin Batau – NIM 240020301078</p>
-      <p style="text-align:center; margin-top:24px; font-size:1.4rem;"></p>
+      <p style="text-align:center; font-size:2rem; color:#64b5f6;">Benyamin Batau</p>
+      <p style="text-align:center; font-size:1.5rem; color:#90caf9;">NIM 240020301078</p>
+      <p style="text-align:center; margin-top:30px; font-size:1.2rem; color:#b3e5fc;">
+        Program Studi Pendidikan Teknologi Kejuruan<br>
+        Pascasarjana Universitas Negeri Makassar
+      </p>
     </div>
 
   </div>
@@ -270,96 +1022,354 @@
 <script>
 let idx = 0;
 const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+function updateCounter() {
+  document.getElementById('slideCounter').textContent = `Slide ${idx + 1} / ${totalSlides}`;
+}
 
 function show(n) {
   slides.forEach(s => s.classList.remove('active'));
   slides[n].classList.add('active');
+  updateCounter();
 }
 
-function next() { idx = (idx + 1) % slides.length; show(idx); }
-function prev() { idx = (idx - 1 + slides.length) % slides.length; show(idx); }
+function next() { 
+  idx = (idx + 1) % slides.length; 
+  show(idx); 
+}
+
+function prev() { 
+  idx = (idx - 1 + slides.length) % slides.length; 
+  show(idx); 
+}
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ') next();
   if (e.key === 'ArrowLeft') prev();
 });
 
+// Chart configurations
+const chartColors = {
+  eksperimen: 'rgba(76, 175, 80, 0.8)',
+  kontrol: 'rgba(33, 150, 243, 0.8)',
+  eksperimenBorder: 'rgba(76, 175, 80, 1)',
+  kontrolBorder: 'rgba(33, 150, 243, 1)'
+};
+
+const commonChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { 
+      position: 'top',
+      labels: { color: '#e3f2fd', font: { size: 14 } }
+    }
+  },
+  scales: {
+    y: { 
+      beginAtZero: true,
+      ticks: { color: '#e3f2fd' },
+      grid: { color: 'rgba(100, 181, 246, 0.1)' }
+    },
+    x: {
+      ticks: { color: '#e3f2fd' },
+      grid: { color: 'rgba(100, 181, 246, 0.1)' }
+    }
+  }
+};
+
 function initCharts() {
+  // Chart Observasi
   new Chart(document.getElementById('obsChart'), {
     type: 'bar',
     data: {
-      labels: ['Sangat Baik', 'Baik', 'Cukup', 'Kurang'],
+      labels: ['Sangat Baik (21-23)', 'Baik (18-20)', 'Cukup (15-17)', 'Kurang (11-14)'],
       datasets: [
-        { label: 'Eksperimen', data: [27.27, 36.36, 31.82, 4.55], backgroundColor: '#4caf50' },
-        { label: 'Kontrol', data: [31.82, 27.27, 9.09, 31.82], backgroundColor: '#2196f3' }
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50 }}}
-  });
-
-  new Chart(document.getElementById('pretestKategoriChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Sangat Baik', 'Baik', 'Cukup', 'Kurang'],
-      datasets: [
-        { label: 'Eksperimen', data: [9, 23, 41, 27], backgroundColor: '#4caf50' },
-        { label: 'Kontrol', data: [5, 18, 45, 32], backgroundColor: '#2196f3' }
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50 }}}
-  });
-
-  new Chart(document.getElementById('posttestKategoriChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Sangat Baik', 'Baik', 'Cukup', 'Kurang'],
-      datasets: [
-        { label: 'Eksperimen', data: [32, 45, 18, 5], backgroundColor: '#4caf50' },
-        { label: 'Kontrol', data: [14, 32, 36, 18], backgroundColor: '#2196f3' }
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50 }}}
-  });
-
-  new Chart(document.getElementById('ngainKategoriChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Sangat Baik', 'Baik', 'Cukup', 'Kurang'],
-      datasets: [
-        { label: 'Eksperimen', data: [36, 41, 18, 5], backgroundColor: '#4caf50' },
-        { label: 'Kontrol', data: [18, 32, 36, 14], backgroundColor: '#2196f3' }
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:50 }}}
-  });
-
-  new Chart(document.getElementById('progresChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Pretest', 'Posttest', 'N-Gain'],
-      datasets: [
-        { label: 'Eksperimen', data: [61, 80.25, 0.70], backgroundColor: 'rgba(76,175,80,0.8)' },
-        { label: 'Kontrol', data: [59.5, 76.70, 0.62], backgroundColor: 'rgba(33,150,243,0.8)' }
+        { 
+          label: 'Eksperimen', 
+          data: [27.27, 36.36, 31.82, 4.55], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [31.82, 27.27, 9.09, 31.82], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: { y: { beginAtZero: true, max: 100 } },
-      plugins: { legend: { position: 'top' }, title: { display: true, text: 'Progres Pretest → Posttest → N-Gain', color: '#fff' } }
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 40 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Distribusi Skor Observasi Aktivitas Siswa (%)', color: '#64b5f6', font: { size: 16 } }
+      }
     }
   });
 
-  new Chart(document.getElementById('prasyaratChart'), {
+  // Chart Pretest
+  new Chart(document.getElementById('pretestChart'), {
     type: 'bar',
-    data: { labels: ['Normalitas', 'Homogenitas', 'Linearitas'], datasets: [{ data: [0.2, 0.543, 0.2], backgroundColor: '#64b5f6' }] },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, max:0.6 }}, plugins:{ title:{display:true,text:'Semua Sig. > 0.05 ✓', color:'#fff'}}}
+    data: {
+      labels: ['Rata-rata', 'Maksimal', 'Minimal', 'Std. Deviasi'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [37.12, 50.00, 25.00, 6.67], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [39.20, 58.33, 20.83, 9.85], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 70 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Perbandingan Statistik Nilai Pretest', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
   });
 
-  new Chart(document.getElementById('tChart'), {
+  // Chart Kategori Pretest
+  new Chart(document.getElementById('pretestKategoriChart'), {
     type: 'bar',
-    data: { labels: ['Independent t-Test'], datasets: [{ data: [2.846], backgroundColor: '#4caf50' }] },
-    options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true }}, plugins:{ title:{display:true,text:'t = -2.846 | Sig. = 0.007 < 0.05 → Signifikan', color:'#fff'}}}
+    data: {
+      labels: ['Sangat Baik (90-100)', 'Baik (80-89)', 'Cukup (70-79)', 'Kurang (<70)'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [0, 0, 0, 100], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [0, 0, 0, 100], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 110 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Distribusi Kategori Nilai Pretest (%)', color: '#ff9800', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart Posttest
+  new Chart(document.getElementById('posttestChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Rata-rata', 'Maksimal', 'Minimal', 'Std. Deviasi'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [83.14, 95.83, 66.67, 6.86], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [76.70, 91.67, 62.50, 8.10], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 110 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Perbandingan Statistik Nilai Posttest', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart Kategori Posttest
+  new Chart(document.getElementById('posttestKategoriChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Sangat Baik (90-100)', 'Baik (80-89)', 'Cukup (70-79)', 'Kurang (<70)'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [18.18, 50.00, 27.27, 4.55], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [9.09, 22.73, 54.55, 13.64], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 60 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Distribusi Kategori Nilai Posttest (%)', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart N-Gain
+  new Chart(document.getElementById('ngainChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Rata-rata N-Gain', 'Maksimal', 'Minimal', 'Std. Deviasi'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [0.74, 0.92, 0.50, 0.10], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [0.61, 0.88, 0.43, 0.13], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 1.0 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Perbandingan Nilai N-Gain', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart Kategori N-Gain
+  new Chart(document.getElementById('ngainKategoriChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Tinggi (≥0,7)', 'Sedang (0,3-0,7)', 'Rendah (<0,3)'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [68.18, 31.82, 0], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [31.82, 68.18, 0], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 80 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Distribusi Kategori N-Gain (%)', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart Progres
+  new Chart(document.getElementById('progresChart'), {
+    type: 'line',
+    data: {
+      labels: ['Pretest', 'Posttest', 'N-Gain (×100)'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [37.12, 83.14, 74], 
+          backgroundColor: 'rgba(76, 175, 80, 0.3)',
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4
+        },
+        { 
+          label: 'Kontrol', 
+          data: [39.20, 76.70, 61], 
+          backgroundColor: 'rgba(33, 150, 243, 0.3)',
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 100 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Progres Pembelajaran: Pretest → Posttest → N-Gain', color: '#64b5f6', font: { size: 16 } }
+      }
+    }
+  });
+
+  // Chart Hipotesis
+  new Chart(document.getElementById('hipotesisChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Rata-rata Posttest', 't-hitung', 'Signifikansi'],
+      datasets: [
+        { 
+          label: 'Eksperimen', 
+          data: [83.14, 2.846, 0.007], 
+          backgroundColor: chartColors.eksperimen,
+          borderColor: chartColors.eksperimenBorder,
+          borderWidth: 2
+        },
+        { 
+          label: 'Kontrol', 
+          data: [76.70, 0, 0], 
+          backgroundColor: chartColors.kontrol,
+          borderColor: chartColors.kontrolBorder,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      ...commonChartOptions,
+      scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, max: 100 } },
+      plugins: {
+        ...commonChartOptions.plugins,
+        title: { display: true, text: 'Hasil Uji Independent Sample t-Test', color: '#4caf50', font: { size: 16 } }
+      }
+    }
   });
 }
 
@@ -368,5 +1378,6 @@ window.onload = () => {
   initCharts();
 };
 </script>
+
 </body>
 </html>
